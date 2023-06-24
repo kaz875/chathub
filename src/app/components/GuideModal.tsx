@@ -27,7 +27,7 @@ const GuideModal: FC = () => {
     })
   }, [])
 
-  if (openTimes === 15) {
+  if (openTimes === -1) {
     return (
       <Dialog title="🌟🌟🌟🌟🌟" open={open} onClose={() => setOpen(false)} className="rounded-2xl w-[600px]">
         <div className="flex flex-col items-center gap-4 py-6">
