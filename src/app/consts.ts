@@ -17,11 +17,31 @@ import i18n from './i18n'
 
 export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
   chatgpt: {
-    name: 'ChatGPT',
+    name: 'ChatGPT(Web)',
+    avatar: chatgptLogo,
+  },
+  poeGPT: {
+    name: 'Poe GPT',
+    avatar: chatgptLogo,
+  },
+  openai: {
+    name: 'OpenAI GPT',
+    avatar: chatgptLogo,
+  },
+  azureGPT: {
+    name: 'Azure GPT',
     avatar: chatgptLogo,
   },
   bing: {
     name: 'Bing',
+    avatar: bingLogo,
+  },
+  bingCreative: {
+    name: 'Bing-Creative',
+    avatar: bingLogo,
+  },
+  bingPrecise: {
+    name: 'Bing-Precise',
     avatar: bingLogo,
   },
   bard: {

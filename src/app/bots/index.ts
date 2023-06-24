@@ -1,3 +1,4 @@
+import { BingConversationStyle, ChatGPTMode } from '~services/user-config'
 import { BardBot } from './bard'
 import { BingWebBot } from './bing'
 import { ChatGPTBot } from './chatgpt'
@@ -7,7 +8,12 @@ import { XunfeiBot } from './xunfei'
 
 export type BotId =
   | 'chatgpt'
+  | 'poeGPT'
+  | 'openai'
+  | 'azureGPT'
   | 'bing'
+  | 'bingCreative'
+  | 'bingPrecise'
   | 'bard'
   | 'claude'
   | 'xunfei'
@@ -24,9 +30,19 @@ export type BotId =
 export function createBotInstance(botId: BotId) {
   switch (botId) {
     case 'chatgpt':
-      return new ChatGPTBot()
+      return new ChatGPTBot(ChatGPTMode.Webapp)
+    case 'poeGPT':
+      return new ChatGPTBot(ChatGPTMode.Poe)
+    case 'openai':
+      return new ChatGPTBot(ChatGPTMode.API)
+    case 'azureGPT':
+      return new ChatGPTBot(ChatGPTMode.Azure)      
     case 'bing':
-      return new BingWebBot()
+      return new BingWebBot(BingConversationStyle.Balanced)
+    case 'bingCreative':
+      return new BingWebBot(BingConversationStyle.Creative)
+    case 'bingPrecise':
+      return new BingWebBot(BingConversationStyle.Precise)
     case 'bard':
       return new BardBot()
     case 'claude':

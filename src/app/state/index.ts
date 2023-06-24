@@ -22,7 +22,7 @@ export const chatFamily = atomFamily(
   (a, b) => a.botId === b.botId && a.page === b.page,
 )
 
-export const licenseKeyAtom = atomWithStorage('licenseKey', '', undefined, { unstable_getOnInit: true })
+export const licenseKeyAtom = atomWithStorage('licenseKey', '', undefined)
 export const sidebarCollapsedAtom = atomWithStorage('sidebarCollapsed', false)
 export const themeColorAtom = atomWithStorage('themeColor', getDefaultThemeColor())
 export const followArcThemeAtom = atomWithStorage('followArcTheme', false)
