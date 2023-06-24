@@ -35,7 +35,7 @@ function SidePanelApp() {
   if (premiumState.activated) {
     return <SidePanelPage />
   }
-  return <PremiumOnly />
+  return <SidePanelPage />
 }
 
 const container = document.getElementById('app')!
