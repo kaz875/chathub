@@ -24,12 +24,6 @@ export enum ChatGPTWebModel {
   'GPT-4 Browsing' = 'gpt-4-browsing',
 }
 
-export enum MultiPanelLayout {
-  Two = '2',
-  Three = '3',
-  Four = '4',
-}
-
 export enum PoeGPTModel {
   'GPT-3.5' = 'chinchilla',
   'GPT-4' = 'beaver',
@@ -56,14 +50,13 @@ export enum ClaudeAPIModel {
 const userConfigWithDefaultValue = {
   openaiApiKey: '',
   openaiApiHost: 'https://api.openai.com',
-  chatgptApiModel: CHATGPT_API_MODELS[0],
+  chatgptApiModel: CHATGPT_API_MODELS[0] as (typeof CHATGPT_API_MODELS)[number],
   chatgptApiTemperature: 1,
   chatgptMode: ChatGPTMode.Webapp,
   chatgptWebappModelName: ChatGPTWebModel['GPT-3.5'],
   chatgptPoeModelName: PoeGPTModel['GPT-3.5'],
   startupPage: ALL_IN_ONE_PAGE_ID,
   bingConversationStyle: BingConversationStyle.Balanced,
-  multiPanelLayout: MultiPanelLayout.Two,
   poeModel: PoeClaudeModel['claude-instant'],
   azureOpenAIApiKey: '',
   azureOpenAIApiInstanceName: '',

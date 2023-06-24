@@ -32,4 +32,8 @@
     max-width: min(80%, 300px);
     margin-top: 5px;
   }
+  & a:not(:has(sup)) {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
