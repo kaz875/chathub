@@ -48,7 +48,7 @@ function Sidebar() {
         className={cx('w-6 h-6 cursor-pointer my-5', collapsed ? 'rotate-180' : 'self-end')}
         onClick={() => setCollapsed((c) => !c)}
       />
-      {collapsed ? <img src={minimalLogo} className="w-[30px]" /> : <img src={logo} className="w-[79px]" />}
+      {/* {collapsed ? <img src={minimalLogo} className="w-[30px]" /> : <img src={logo} className="w-[79px]" />} */}
       <div className="flex flex-col gap-3 mt-12 overflow-y-auto scrollbar-none">
         <NavLink to="/" text={'All-In-One'} icon={allInOneIcon} iconOnly={collapsed} />
         {enabledBots.map(({ botId, bot }) => (
@@ -64,11 +64,11 @@ function Sidebar() {
       </div>
       <div className="mt-auto pt-2">
         {!collapsed && <hr className="border-[#ffffff4d]" />}
-        {!collapsed && (
+        {/* {!collapsed && (
           <div className="my-5">
             <PremiumEntry text={t('Premium')} />
           </div>
-        )}
+        )} */}
         <div className={cx('flex mt-5 gap-[10px] mb-4', collapsed ? 'flex-col' : 'flex-row ')}>
           {!collapsed && (
             <Tooltip content={t('GitHub')}>
