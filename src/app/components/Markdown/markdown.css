@@ -1,27 +1,27 @@
 .markdown-custom-styles {
   color: inherit;
+  font-size: small;
   background-color: transparent;
   > p {
     margin-bottom: 5px;
     font-size: small;
   }
-  > ul {
-    list-style: disc;
-    font-size: small; 
-  }
   ol {
     list-style: disc;
+    font-size: small;
     padding-left: 1em;
     margin-bottom: 5px;
     font-size: small;
   }
   & li p {
     margin-top: 5px;
+    font-size: small;
     margin-bottom: 5px;
     font-size: small;
   }
   & pre {
     padding: 0;
+    font-size: small;
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: small;
@@ -38,7 +38,6 @@
   }
   & a:not(:has(sup)) {
     color: inherit;
-    font-size: small;
     text-decoration: underline;
   }
 }
