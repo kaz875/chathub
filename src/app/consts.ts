@@ -52,6 +52,10 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Claude',
     avatar: claudeLogo,
   },
+  claude100k: {
+    name: 'claude100k',
+    avatar: claudeLogo,
+  },
   xunfei: {
     name: i18n.t('iFlytek Spark'),
     avatar: xunfeiLogo,

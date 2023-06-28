@@ -1,4 +1,4 @@
-import { BingConversationStyle, ChatGPTMode } from '~services/user-config'
+import { BingConversationStyle, ChatGPTMode, PoeClaudeModel } from '~services/user-config'
 import { BardBot } from './bard'
 import { BingWebBot } from './bing'
 import { ChatGPTBot } from './chatgpt'
@@ -16,6 +16,7 @@ export type BotId =
   | 'bingPrecise'
   | 'bard'
   | 'claude'
+  | 'claude100k'
   | 'xunfei'
   | 'vicuna'
   | 'alpaca'
@@ -46,7 +47,9 @@ export function createBotInstance(botId: BotId) {
     case 'bard':
       return new BardBot()
     case 'claude':
-      return new ClaudeBot()
+      return new ClaudeBot(PoeClaudeModel['claude+'])
+    case 'claude100k':
+      return new ClaudeBot(PoeClaudeModel['claude-instant-100k'])
     case 'xunfei':
       return new XunfeiBot()
     case 'vicuna':

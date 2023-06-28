@@ -1,9 +1,17 @@
-import { ClaudeMode, getUserConfig } from '~/services/user-config'
+import { ClaudeMode, PoeClaudeModel, getUserConfig } from '~/services/user-config'
 import { AsyncAbstractBot } from '../abstract-bot'
 import { ClaudeApiBot } from '../claude-api'
 import { PoeWebBot } from '../poe'
 
 export class ClaudeBot extends AsyncAbstractBot {
+
+  poeChatStyle:PoeClaudeModel;
+
+  constructor(chatStyle:PoeClaudeModel){
+    super();
+    this.poeChatStyle = chatStyle;
+  }
+
   async initializeBot() {
     const { claudeMode, ...config } = await getUserConfig()
     if (claudeMode === ClaudeMode.API) {
@@ -15,6 +23,6 @@ export class ClaudeBot extends AsyncAbstractBot {
         claudeApiModel: config.claudeApiModel,
       })
     }
-    return new PoeWebBot(config.poeModel)
+    return new PoeWebBot(this.poeChatStyle/* config.poeModel */)
   }
 }
