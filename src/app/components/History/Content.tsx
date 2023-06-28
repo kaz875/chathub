@@ -12,6 +12,7 @@ import ChatMessage from './ChatMessage'
 type ViewportListItem =
   | {
       type: 'conversation'
+      topic: string
       createdAt: number
     }
   | {
@@ -48,7 +49,7 @@ const HistoryContent: FC<{ botId: BotId; keyword: string }> = ({ botId, keyword 
       if (!messages.length) {
         continue
       }
-      results.push({ type: 'conversation', createdAt: c.createdAt })
+      results.push({ type: 'conversation', topic: messages[0].text, createdAt: c.createdAt })
       for (const m of messages) {
         results.push({ type: 'message', message: m, conversationId: c.id })
       }
@@ -73,7 +74,7 @@ const HistoryContent: FC<{ botId: BotId; keyword: string }> = ({ botId, keyword 
         initialIndex={filteredItems.length || items.length}
       >
         {(item) => {
-          if (item.type === 'conversation') {
+          if (item.type === 'conversation') { //TODO: add topic
             return (
               <div className="text-center my-5" key={item.createdAt}>
                 <Timestamp timestamp={item.createdAt} />

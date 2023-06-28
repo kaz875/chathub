@@ -61,6 +61,13 @@ const styleOptionsMap: Record<BingConversationStyle, string[]> = {
 }
 
 export class BingWebBot extends AbstractBot {
+  bingChatStyle:BingConversationStyle;
+
+  constructor(chatStyle:BingConversationStyle){
+    super();
+    this.bingChatStyle = chatStyle;
+  }
+
   private conversationContext?: ConversationInfo
 
   private buildChatRequest(conversation: ConversationInfo, message: string) {
@@ -125,7 +132,7 @@ export class BingWebBot extends AbstractBot {
         conversationSignature: conversation.conversationSignature,
         clientId: conversation.clientId,
         invocationId: 0,
-        conversationStyle: bingConversationStyle,
+        conversationStyle: this.bingChatStyle //bingConversationStyle,
       }
     }
 
@@ -163,7 +170,10 @@ export class BingWebBot extends AbstractBot {
           if (!messages) {
             params.onEvent({
               type: 'ERROR',
-              error: new ChatError(event.item.result.error || 'Unknown error', ErrorCode.UNKOWN_ERROR),
+              error: new ChatError(
+                event.item.result.error || 'Unknown error',
+                event.item.result.value === 'CaptchaChallenge' ? ErrorCode.BING_CAPTCHA : ErrorCode.UNKOWN_ERROR,
+              ),
             })
             return
           }
