@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import WebSocketAsPromised from 'websocket-as-promised'
 import { requestHostPermission } from '~app/utils/permissions'
-import { PoeClaudeModel, PoeGPTModel } from '~services/user-config'
+import { PoeClaudeModel, PoeGPTModel, UserConfig, getUserConfig } from '~services/user-config'
 import { ChatError, ErrorCode } from '~utils/errors'
 import { AbstractBot, SendMessageParams } from '../abstract-bot'
 import { GRAPHQL_QUERIES, PoeSettings, getChatId, getPoeSettings, gqlRequest } from './api'
@@ -33,7 +33,7 @@ interface ConversationContext {
 }
 
 export class PoeWebBot extends AbstractBot {
-  private conversationContext?: ConversationContext
+  public conversationContext?: ConversationContext
 
   constructor(public botId: string) {
     super()
@@ -115,7 +115,8 @@ export class PoeWebBot extends AbstractBot {
 
   private async getChatInfo() {
     const poeSettings = await getPoeSettings()
-    const chatId = await getChatId(this.botId, poeSettings)
+    const chatId = await getChatId(this.botId, poeSettings);
+    (await getUserConfig()).poeFormKey = poeSettings.formkey;
     return { poeSettings, chatId }
   }
 

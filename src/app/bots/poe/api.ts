@@ -33,7 +33,7 @@ interface ChannelData {
   enableWebsocket: boolean
 }
 
-async function getFormkey() {
+export async function getFormkey() {
   const html: string = await ofetch('https://poe.com', { parseResponse: (txt) => txt })
   const r = html.match(/<script>if(.+)throw new Error;(.+),window.+<\/script>/)
   const scriptText = r![2]

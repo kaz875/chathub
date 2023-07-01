@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ClaudePoeSettings: FC<Props> = ({ userConfig, updateConfigValue }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-1">
       <p className="font-medium text-sm">{t('Model')}</p>
@@ -24,7 +24,7 @@ const ClaudePoeSettings: FC<Props> = ({ userConfig, updateConfigValue }) => {
         <p className="text-sm mt-1 text-secondary-text">{t('Limited Access')}</p>
       )}
       {userConfig.poeModel === PoeClaudeModel['claude-instant-100k'] && (
-        <p className="text-sm mt-1 text-secondary-text">{t('Poe subscribers only')}</p>
+        <p className="text-sm mt-1 text-secondary-text">{t('Poe subscribers only. Poe formkey: ' + userConfig.poeFormKey)}</p>
       )}
     </div>
   )
