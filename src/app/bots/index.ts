@@ -15,6 +15,7 @@ export type BotId =
   | 'bingCreative'
   | 'bingPrecise'
   | 'bard'
+  | 'poePaLM'
   | 'claude'
   | 'claude100k'
   | 'xunfei'
@@ -46,6 +47,8 @@ export function createBotInstance(botId: BotId) {
       return new BingWebBot(BingConversationStyle.Precise)
     case 'bard':
       return new BardBot()
+    case 'poePaLM':
+      return new ClaudeBot(PoeClaudeModel['PaLM'])
     case 'claude':
       return new ClaudeBot(PoeClaudeModel['claude+'])
     case 'claude100k':

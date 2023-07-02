@@ -35,8 +35,9 @@ export enum PoeClaudeModel {
   'claude-instant' = 'a2',
   'claude+' = 'a2_2',
   'claude-instant-100k' = 'a2_100k',
+  'PaLM' = 'acouchy',
 }
-
+ 
 export enum ClaudeMode {
   Poe = 'poe',
   API = 'api',

@@ -24,6 +24,10 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Poe GPT',
     avatar: chatgptLogo,
   },
+  poePaLM: {
+    name: 'Poe PALM',
+    avatar: bardLogo,
+  },
   openai: {
     name: 'OpenAI GPT',
     avatar: chatgptLogo,
