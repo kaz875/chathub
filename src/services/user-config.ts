@@ -2,7 +2,6 @@ import { defaults } from 'lodash-es'
 import { ofetch } from 'ofetch'
 import Browser from 'webextension-polyfill'
 import { BotId } from '~app/bots'
-import { PoeSettings, getFormkey } from '~app/bots/poe/api'
 import { ALL_IN_ONE_PAGE_ID, CHATBOTS, CHATGPT_API_MODELS, DEFAULT_CHATGPT_SYSTEM_MESSAGE } from '~app/consts'
 
 export enum BingConversationStyle {
@@ -73,9 +72,6 @@ export type UserConfig = typeof userConfigWithDefaultValue
 
 export async function getUserConfig(): Promise<UserConfig> {
   const result = await Browser.storage.sync.get(Object.keys(userConfigWithDefaultValue))
-
-  const [formkey] = await Promise.all([ofetch<PoeSettings>('https://poe.com/api/settings'), getFormkey()])
-  result.poeFormKey = JSON.stringify(formkey);
   
   if (!result.chatgptMode && result.openaiApiKey) {
     result.chatgptMode = ChatGPTMode.API
