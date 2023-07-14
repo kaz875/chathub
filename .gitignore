@@ -12,6 +12,7 @@ node_modules
 dist
 dist-ssr
 setting_bkup
+settingBkup
 *.local
 
 # Editor directories and files
