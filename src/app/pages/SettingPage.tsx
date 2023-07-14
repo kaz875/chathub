@@ -142,7 +142,7 @@ function SettingPage() {
             <ChatGPTAPISettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
           ) : userConfig.chatgptMode === ChatGPTMode.Azure ? (
             <ChatGPTAzureSettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
-          ) : userConfig.chatgptMode === ChatGPTMode.Poe ? (
+          ) : userConfig.chatgptMode === ChatGPTMode.PoeGPT ? (
             <ChatGPTPoeSettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
           ) : (
             <ChatGPWebSettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
