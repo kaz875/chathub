@@ -1,4 +1,4 @@
-import { ChatGPTMode, getUserConfig } from '~/services/user-config'
+import { ChatGPTMode, PoeGPTModel, getUserConfig } from '~/services/user-config'
 import { ChatError, ErrorCode } from '~utils/errors'
 import { AsyncAbstractBot } from '../abstract-bot'
 import { ChatGPTApiBot } from '../chatgpt-api'
@@ -39,9 +39,18 @@ export class ChatGPTBot extends AsyncAbstractBot {
         azureOpenAIApiInstanceName: config.azureOpenAIApiInstanceName,
       })
     }
-    if (this.chatgptModeSpecified === ChatGPTMode.Poe) {
-      return new PoeWebBot(config.chatgptPoeModelName)
+    if (this.chatgptModeSpecified === ChatGPTMode.PoeGPT) {
+      return new PoeWebBot(PoeGPTModel['GPT-3.5'])
     }
+    if (this.chatgptModeSpecified === ChatGPTMode.PoeGPT16k) {
+      return new PoeWebBot(PoeGPTModel['GPT-3.5-16k'])
+    }    
+    if (this.chatgptModeSpecified === ChatGPTMode.PoeGPT4) {
+      return new PoeWebBot(PoeGPTModel['GPT-4'])
+    }    
+    if (this.chatgptModeSpecified === ChatGPTMode.PoeGPT32k) {
+      return new PoeWebBot(PoeGPTModel['GPT-4-32k'])
+    }    
     return new ChatGPTWebBot(config.chatgptWebappModelName)
   }
 }

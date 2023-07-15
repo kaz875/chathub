@@ -20,12 +20,24 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'ChatGPT(Web)',
     avatar: chatgptLogo,
   },
-  poeGPT: {
-    name: 'Poe GPT',
+  poeGPT3: {
+    name: 'GPT-3.5-Turbo',
+    avatar: chatgptLogo,
+  },
+  "poeGPT3-16k": {
+    name: 'GPT-3.5-Turbo-16k',
+    avatar: chatgptLogo,
+  },
+  "poeGPT4-32k": {
+    name: 'GPT-4-32k',
+    avatar: chatgptLogo,
+  },  
+  poeGPT4: {
+    name: 'GPT-4',
     avatar: chatgptLogo,
   },
   poePaLM: {
-    name: 'Poe PALM',
+    name: 'PaLM',
     avatar: bardLogo,
   },
   openai: {
@@ -36,7 +48,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Azure GPT',
     avatar: chatgptLogo,
   },
-  bing: {
+  bingBalanced: {
     name: 'Bing',
     avatar: bingLogo,
   },
@@ -52,11 +64,11 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Bard',
     avatar: bardLogo,
   },
-  claude: {
+  claude2: {
     name: 'Claude',
     avatar: claudeLogo,
   },
-  claude100k: {
+  claudeInstant: {
     name: 'claude100k',
     avatar: claudeLogo,
   },

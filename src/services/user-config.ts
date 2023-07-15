@@ -14,7 +14,10 @@ export enum ChatGPTMode {
   Webapp = 'webapp',
   API = 'api',
   Azure = 'azure',
-  Poe = 'poe',
+  PoeGPT = 'poeGPT3',
+  PoeGPT16k = 'poeGPT3-16k',  
+  PoeGPT4 = 'poeGPT4',    
+  PoeGPT32k = 'poeGPT4-32k',      
 }
 
 export enum ChatGPTWebModel {
@@ -24,16 +27,18 @@ export enum ChatGPTWebModel {
 
 export enum PoeGPTModel {
   'GPT-3.5' = 'chinchilla',
+  'GPT-3.5-16k' = 'agouti',
   'GPT-4' = 'beaver',
+  'GPT-4-32k' = 'vizcacha',  
 }
 
 export enum PoeClaudeModel {
   'claude-instant' = 'a2',
-  'claude+' = 'a2_2',
+  'claude2-100k' = 'a2_2',
   'claude-instant-100k' = 'a2_100k',
   'PaLM' = 'acouchy',
 }
- 
+
 export enum ClaudeMode {
   Poe = 'poe',
   API = 'api',
