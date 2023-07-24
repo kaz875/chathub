@@ -43,8 +43,8 @@ export default defineManifest(async (env) => {
         description: 'Open ChatHub app',
       },
     },
-    side_panel: {
-      default_path: 'sidepanel.html',
-    },
+    // side_panel: {
+    //   default_path: 'sidepanel.html',
+    // },
   }
 })
