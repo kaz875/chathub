@@ -8,16 +8,19 @@ import { XunfeiBot } from './xunfei'
 
 export type BotId =
   | 'chatgpt'
-  | 'poeGPT'
+  | 'poeGPT3'
+  | 'poeGPT3-16k'  
+  | 'poeGPT4'    
+  | 'poeGPT4-32k'      
   | 'openai'
   | 'azureGPT'
-  | 'bing'
+  | 'bingBalanced'
   | 'bingCreative'
   | 'bingPrecise'
   | 'bard'
   | 'poePaLM'
-  | 'claude'
-  | 'claude100k'
+  | 'claude2'
+  | 'claudeInstant'
   | 'xunfei'
   | 'vicuna'
   | 'alpaca'
@@ -33,13 +36,19 @@ export function createBotInstance(botId: BotId) {
   switch (botId) {
     case 'chatgpt':
       return new ChatGPTBot(ChatGPTMode.Webapp)
-    case 'poeGPT':
-      return new ChatGPTBot(ChatGPTMode.Poe)
+    case 'poeGPT3':
+      return new ChatGPTBot(ChatGPTMode.PoeGPT)
+    case 'poeGPT3-16k':
+        return new ChatGPTBot(ChatGPTMode.PoeGPT16k)   
+    case 'poeGPT4':
+        return new ChatGPTBot(ChatGPTMode.PoeGPT4)    
+    case 'poeGPT4-32k':
+        return new ChatGPTBot(ChatGPTMode.PoeGPT32k)                       
     case 'openai':
       return new ChatGPTBot(ChatGPTMode.API)
     case 'azureGPT':
       return new ChatGPTBot(ChatGPTMode.Azure)      
-    case 'bing':
+    case 'bingBalanced':
       return new BingWebBot(BingConversationStyle.Balanced)
     case 'bingCreative':
       return new BingWebBot(BingConversationStyle.Creative)
@@ -49,9 +58,9 @@ export function createBotInstance(botId: BotId) {
       return new BardBot()
     case 'poePaLM':
       return new ClaudeBot(PoeClaudeModel['PaLM'])
-    case 'claude':
-      return new ClaudeBot(PoeClaudeModel['claude+'])
-    case 'claude100k':
+    case 'claude2':
+      return new ClaudeBot(PoeClaudeModel['claude2-100k'])
+    case 'claudeInstant':
       return new ClaudeBot(PoeClaudeModel['claude-instant-100k'])
     case 'xunfei':
       return new XunfeiBot()

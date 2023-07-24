@@ -15,9 +15,9 @@ import { BotId } from '../bots'
 import ConversationPanel from '../components/Chat/ConversationPanel'
 
 const layoutAtom = atomWithStorage<number>('multiPanelLayout', 2, undefined)
-const twoPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:2', ['chatgpt', 'bing'])
-const threePanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:3', ['chatgpt', 'bing', 'bard'])
-const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'bing', 'claude', 'bard'])
+const twoPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:2', ['chatgpt', 'bingBalanced'])
+const threePanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:3', ['chatgpt', 'bingBalanced', 'bard'])
+const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'bingBalanced', 'claude2', 'bard'])
 
 const GeneralChatPanel: FC<{
   chats: ReturnType<typeof useChat>[]
