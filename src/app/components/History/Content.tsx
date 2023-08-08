@@ -8,6 +8,8 @@ import { loadHistoryMessages } from '~services/chat-history'
 import { ChatMessageModel } from '~types'
 import { formatTime } from '~utils/format'
 import ChatMessage from './ChatMessage'
+import { useAtom } from 'jotai'
+import { topicAtom } from '~app/state'
 
 type ViewportListItem =
   | {
@@ -32,7 +34,11 @@ const Timestamp = memo((props: { timestamp: number }) => {
 Timestamp.displayName = 'Timestamp'
 
 const HistoryContent: FC<{ botId: BotId; keyword: string }> = ({ botId, keyword }) => {
-  const historyQuery = useSWR(`history:${botId}`, () => loadHistoryMessages(botId), { suspense: true })
+  // Get the current topic from the topic atom
+  const [topic] = useAtom(topicAtom)
+
+  // Pass the topic parameter to loadHistoryMessages
+  const historyQuery = useSWR(`history:${botId}:${topic}`, () => loadHistoryMessages(botId, topic), { suspense: true })
   const ref = useRef<HTMLDivElement | null>(null)
 
   const fuse = useMemo(() => {

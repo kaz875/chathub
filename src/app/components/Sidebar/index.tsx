@@ -2,7 +2,7 @@
 import { Link } from '@tanstack/react-router'
 import cx from 'classnames'
 import { useAtom } from 'jotai'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import allInOneIcon from '~/assets/all-in-one.svg'
 import collapseIcon from '~/assets/icons/collapse.svg'
@@ -38,6 +38,26 @@ function Sidebar() {
   const [themeSettingModalOpen, setThemeSettingModalOpen] = useState(false)
   const enabledBots = useEnabledBots()
   const [topic, setTopic] = useAtom(topicAtom) // use topicAtom
+
+  // Add an event listener for keyboard events
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Check if Alt + S is pressed
+      if (event.altKey && event.code === 'KeyS') {
+        // Prevent default behavior
+        event.preventDefault()
+        // Toggle collapsed state
+        setCollapsed((c) => !c)
+      }
+    }
+    // Add event listener to document
+    document.addEventListener('keydown', handleKeyDown)
+    // Remove event listener on cleanup
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [setCollapsed])
+
   return (
     <aside
       className={cx(
@@ -56,13 +76,16 @@ function Sidebar() {
         {!collapsed && (
             <Tooltip content={t('Topic')}>
               {/* Add a text box for the topic */}
+              {/* Use flexbox layout and width property to align the input element */}
+              <div className="display: flex; align-items: center; width: 100%;">
               <input
                 type="text"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 placeholder="Enter topic"
-                className="p-[6px] rounded-[10px] w-fit cursor-pointer hover:opacity-80 bg-secondary bg-opacity-20"
+                className="p-[6px] rounded-[10px] w-fit cursor-pointer hover:opacity-80 bg-secondary bg-opacity-20 flex: 1; width: 100%;"
               />
+              </div>
             </Tooltip>
         )}
 

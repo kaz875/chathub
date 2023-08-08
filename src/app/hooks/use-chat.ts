@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import { useCallback, useEffect, useMemo } from 'react'
 import { trackEvent } from '~app/plausible'
-import { chatFamily } from '~app/state'
+import { chatFamily, topicAtom } from '~app/state'
 import { setConversationMessages } from '~services/chat-history'
 import { ChatMessageModel } from '~types'
 import { uuid } from '~utils'
@@ -101,12 +101,16 @@ export function useChat(botId: BotId) {
     })
   }, [chatState.abortController, chatState.generatingMessageId, setChatState, updateMessage])
 
+  // Get the current topic from the topic atom
+  const [topic] = useAtom(topicAtom)
+
   useEffect(() => {
     if (chatState.messages.length) {
-      setConversationMessages(botId, chatState.conversationId, chatState.messages)
+      // Pass the topic parameter to setConversationMessages
+      setConversationMessages(botId, topic, chatState.conversationId, chatState.messages)
     }
-  }, [botId, chatState.conversationId, chatState.messages])
-
+  }, [botId, topic, chatState.conversationId, chatState.messages])
+  
   const chat = useMemo(
     () => ({
       botId,

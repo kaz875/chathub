@@ -9,8 +9,8 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.18",
-    "@types/chrome": "^0.0.241",
     "@headlessui/tailwindcss": "^0.2.0",
+    "@types/chrome": "^0.0.241",
     "@types/lodash-es": "^4.17.8",
     "@types/md5": "^2.3.2",
     "@types/react": "^18.2.18",
@@ -55,6 +55,7 @@
     "classnames": "^2.3.2",
     "cmdk": "^0.2.0",
     "eventsource-parser": "^1.0.0",
+    "firebase": "^10.1.0",
     "fuse.js": "^6.6.2",
     "github-markdown-css": "^5.2.0",
     "gpt3-tokenizer": "^1.1.5",

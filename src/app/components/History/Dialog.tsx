@@ -10,6 +10,8 @@ import { clearHistoryMessages } from '~services/chat-history'
 import Dialog from '../Dialog'
 import Tooltip from '../Tooltip'
 import HistoryContent from './Content'
+import { useAtom } from 'jotai'
+import { topicAtom } from '~app/state'
 
 const SearchInput: FC<{ disabled: boolean; value: string; onChange: (v: string) => void }> = (props) => {
   const { t } = useTranslation()
@@ -39,11 +41,16 @@ const HistoryDialog: FC<Props> = (props) => {
   const premiumState = usePremium()
   const [keyword, setKeyword] = useState('')
 
+  // Get the current topic from the topic atom
+  const [topic] = useAtom(topicAtom)
+
   const clearAll = useCallback(async () => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (confirm(t('Are you sure you want to clear history messages?')!)) {
-      await clearHistoryMessages(props.botId)
+      // Pass the topic parameter to clearHistoryMessages
+      await clearHistoryMessages(props.botId, topic)
     }
-  }, [props.botId, t])
+  }, [props.botId, topic, t])
 
   return (
     <Dialog

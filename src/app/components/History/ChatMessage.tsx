@@ -7,6 +7,8 @@ import { BotId } from '~app/bots'
 import { deleteHistoryMessage } from '~services/chat-history'
 import { ChatMessageModel } from '~types'
 import Markdown from '../Markdown'
+import { useAtom } from 'jotai'
+import { topicAtom } from '~app/state'
 
 interface Props {
   botId: BotId
@@ -17,10 +19,15 @@ interface Props {
 const ChatMessage: FC<Props> = ({ botId, message, conversationId }) => {
   const { mutate } = useSWRConfig()
 
+  // Get the current topic from the topic atom
+  const [topic] = useAtom(topicAtom)
+
   const deleteMessage = useCallback(async () => {
-    await deleteHistoryMessage(botId, conversationId, message.id)
-    mutate(`history:${botId}`)
-  }, [botId, conversationId, message.id, mutate])
+    // Pass the topic parameter to deleteHistoryMessage
+    await deleteHistoryMessage(botId, topic, conversationId, message.id)
+    // Pass the topic parameter to mutate
+    mutate(`history:${botId}:${topic}`)
+  }, [botId, topic, conversationId, message.id, mutate])
 
   if (!message.text) {
     return null
