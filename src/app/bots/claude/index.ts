@@ -10,7 +10,7 @@ export class ClaudeBot extends AsyncAbstractBot {
 
   poeChatStyle:PoeClaudeModel;
 
-  constructor(chatStyle:PoeClaudeModel){
+  constructor(chatStyle:PoeClaudeModel, public webappMode = false){
     super();
     this.poeChatStyle = chatStyle;
   }
@@ -26,7 +26,7 @@ export class ClaudeBot extends AsyncAbstractBot {
         claudeApiModel: config.claudeApiModel,
       })
     }
-    if (claudeMode === ClaudeMode.Webapp) {
+    if (this.webappMode/* claudeMode === ClaudeMode.Webapp */) {
       return new ClaudeWebBot()
     }
     return new PoeWebBot(this.poeChatStyle/* config.poeModel */)

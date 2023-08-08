@@ -21,6 +21,7 @@ export type BotId =
   | 'bard'
   | 'poepalm'
   | 'claude2'
+  | 'claude2-100k'
   | 'claudeinstant'
   | 'xunfei'
   | 'vicuna'
@@ -64,8 +65,10 @@ export function createBotInstance(botId: BotId) {
       return new BardBot()
     case 'poepalm':
       return new ClaudeBot(PoeClaudeModel['PaLM'])
+    case 'claude2-100k':
+        return new ClaudeBot(PoeClaudeModel['claude2-100k'])
     case 'claude2':
-      return new ClaudeBot(PoeClaudeModel['claude2-100k'])
+      return new ClaudeBot(PoeClaudeModel['claude2-100k'], true)
     case 'claudeinstant':
       return new ClaudeBot(PoeClaudeModel['claude-instant-100k'])
     case 'xunfei':

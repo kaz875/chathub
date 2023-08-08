@@ -64,9 +64,13 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     avatar: bardLogo,
   },
   claude2: {
-    name: 'Claude2-100k',
+    name: 'Claude2-webapp',
     avatar: claudeLogo,
   },
+  'claude2-100k': {
+    name: 'Claude2-100k',
+    avatar: claudeLogo,
+  },  
   claudeinstant: {
     name: 'claudeInstant-100k',
     avatar: claudeLogo,
