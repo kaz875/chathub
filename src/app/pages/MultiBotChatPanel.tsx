@@ -15,17 +15,10 @@ import { trackEvent } from '~app/plausible'
 import { BotId } from '../bots'
 import ConversationPanel from '../components/Chat/ConversationPanel'
 
-<<<<<<< HEAD
-const layoutAtom = atomWithStorage<number>('multiPanelLayout', 2, undefined)
-const twoPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:2', ['chatgpt', 'bingBalanced'])
-const threePanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:3', ['chatgpt', 'bingBalanced', 'bard'])
-const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'bingBalanced', 'claude2', 'bard'])
-=======
 const layoutAtom = atomWithStorage<Layout>('multiPanelLayout', 2, undefined, { unstable_getOnInit: true })
-const twoPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:2', ['chatgpt', 'claude'])
-const threePanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:3', ['chatgpt', 'claude', 'bard'])
-const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'claude', 'bard', 'bing'])
->>>>>>> e7f417b129bc4cb51d045cab8dfd1b860318ce96
+const twoPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:2', ['chatgpt', 'claude2'])
+const threePanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:3', ['chatgpt', 'claude2', 'bard'])
+const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'claude2', 'bard', 'bingBalanced'])
 
 const GeneralChatPanel: FC<{
   chats: ReturnType<typeof useChat>[]
@@ -158,7 +151,7 @@ const FourBotChatPanel = () => {
 
 const ImageInputPanel = () => {
   const chat1 = useChat('bard')
-  const chat2 = useChat('bing')
+  const chat2 = useChat('bingBalanced')
   const chats = useMemo(() => [chat1, chat2], [chat1, chat2])
   return <GeneralChatPanel chats={chats} supportImageInput={true} />
 }

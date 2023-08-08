@@ -26,14 +26,12 @@ export type BotId =
   | 'vicuna'
   | 'alpaca'
   | 'chatglm'
-  | 'koala'
   | 'dolly'
-  | 'llama-7b'
-  | 'llama-13b'  
+  | 'llama2-7b'
+  | 'llama2-13b'  
   | 'stablelm'
   | 'oasst'
   | 'rwkv'
-  | 'llama'
   | 'oasst'
   | 'rwkv'
   | 'pi'
@@ -78,18 +76,14 @@ export function createBotInstance(botId: BotId) {
       return new LMSYSBot('alpaca-13b')
     case 'chatglm':
       return new LMSYSBot('chatglm-6b')
-    case 'koala':
-      return new LMSYSBot('koala-13b')
     case 'dolly':
-      return new LMSYSBot('dolly-v2-12b')
-    case 'llama-7b':
-        return new LMSYSBot('llama-2-7b-chat')           
-    case 'llama-13b':
-        return new LMSYSBot('llama-2-13b-chat')      
+      return new LMSYSBot('dolly-v2-12b') 
     case 'stablelm':
       return new LMSYSBot('stablelm-tuned-alpha-7b')
-    case 'llama':
-      return new LMSYSBot('llama-2-13b-chat')
+    case 'llama2-7b':
+      return new LMSYSBot('llama-2-7b-chat')           
+    case 'llama2-13b':
+      return new LMSYSBot('llama-2-13b-chat')       
     case 'oasst':
       return new LMSYSBot('oasst-pythia-12b')
     case 'rwkv':
