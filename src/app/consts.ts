@@ -47,7 +47,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Azure GPT',
     avatar: chatgptLogo,
   },
-  bingBalanced: {
+  bing: {
     name: 'Bing',
     avatar: bingLogo,
   },

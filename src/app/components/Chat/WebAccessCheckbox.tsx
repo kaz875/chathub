@@ -23,7 +23,7 @@ const WebAccessCheckbox: FC<Props> = (props) => {
     if (props.botId === 'chatgpt') {
       return 'chatgptWebAccess'
     }
-    if (props.botId === 'claude') {
+    if (props.botId === 'claude2') {
       return 'claudeWebAccess'
     }
   }, [props.botId])

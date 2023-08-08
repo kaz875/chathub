@@ -18,7 +18,7 @@ import ConversationPanel from '../components/Chat/ConversationPanel'
 const layoutAtom = atomWithStorage<Layout>('multiPanelLayout', 2, undefined, { unstable_getOnInit: true })
 const twoPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:2', ['chatgpt', 'claude2'])
 const threePanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:3', ['chatgpt', 'claude2', 'bard'])
-const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'claude2', 'bard', 'bingBalanced'])
+const fourPanelBotsAtom = atomWithStorage<BotId[]>('multiPanelBots:4', ['chatgpt', 'claude2', 'bard', 'bing'])
 
 const GeneralChatPanel: FC<{
   chats: ReturnType<typeof useChat>[]
@@ -151,7 +151,7 @@ const FourBotChatPanel = () => {
 
 const ImageInputPanel = () => {
   const chat1 = useChat('bard')
-  const chat2 = useChat('bingBalanced')
+  const chat2 = useChat('bing')
   const chats = useMemo(() => [chat1, chat2], [chat1, chat2])
   return <GeneralChatPanel chats={chats} supportImageInput={true} />
 }

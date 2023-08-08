@@ -15,7 +15,7 @@ export type BotId =
   | 'poeGPT4-32k'      
   | 'openai'
   | 'azureGPT'
-  | 'bingBalanced'
+  | 'bing'
   | 'bingCreative'
   | 'bingPrecise'
   | 'bard'
@@ -54,7 +54,7 @@ export function createBotInstance(botId: BotId) {
       return new ChatGPTBot(ChatGPTMode.API)
     case 'azureGPT':
       return new ChatGPTBot(ChatGPTMode.Azure)      
-    case 'bingBalanced':
+    case 'bing':
       return new BingWebBot(BingConversationStyle.Balanced)
     case 'bingCreative':
       return new BingWebBot(BingConversationStyle.Creative)
