@@ -9,19 +9,19 @@ import { XunfeiBot } from './xunfei'
 
 export type BotId =
   | 'chatgpt'
-  | 'poeGPT3'
-  | 'poeGPT3-16k'  
-  | 'poeGPT4'    
-  | 'poeGPT4-32k'      
+  | 'poegpt3'
+  | 'poegpt3-16k'  
+  | 'poegpt4'    
+  | 'poegpt4-32k'      
   | 'openai'
-  | 'azureGPT'
+  | 'azuregpt'
   | 'bing'
-  | 'bingCreative'
-  | 'bingPrecise'
+  | 'bingcreative'
+  | 'bingprecise'
   | 'bard'
-  | 'poePaLM'
+  | 'poepalm'
   | 'claude2'
-  | 'claudeInstant'
+  | 'claudeinstant'
   | 'xunfei'
   | 'vicuna'
   | 'alpaca'
@@ -42,31 +42,31 @@ export function createBotInstance(botId: BotId) {
   switch (botId) {
     case 'chatgpt':
       return new ChatGPTBot(ChatGPTMode.Webapp)
-    case 'poeGPT3':
+    case 'poegpt3':
       return new ChatGPTBot(ChatGPTMode.PoeGPT)
-    case 'poeGPT3-16k':
+    case 'poegpt3-16k':
         return new ChatGPTBot(ChatGPTMode.PoeGPT16k)   
-    case 'poeGPT4':
+    case 'poegpt4':
         return new ChatGPTBot(ChatGPTMode.PoeGPT4)    
-    case 'poeGPT4-32k':
+    case 'poegpt4-32k':
         return new ChatGPTBot(ChatGPTMode.PoeGPT32k)                       
     case 'openai':
       return new ChatGPTBot(ChatGPTMode.API)
-    case 'azureGPT':
+    case 'azuregpt':
       return new ChatGPTBot(ChatGPTMode.Azure)      
     case 'bing':
       return new BingWebBot(BingConversationStyle.Balanced)
-    case 'bingCreative':
+    case 'bingcreative':
       return new BingWebBot(BingConversationStyle.Creative)
-    case 'bingPrecise':
+    case 'bingprecise':
       return new BingWebBot(BingConversationStyle.Precise)
     case 'bard':
       return new BardBot()
-    case 'poePaLM':
+    case 'poepalm':
       return new ClaudeBot(PoeClaudeModel['PaLM'])
     case 'claude2':
       return new ClaudeBot(PoeClaudeModel['claude2-100k'])
-    case 'claudeInstant':
+    case 'claudeinstant':
       return new ClaudeBot(PoeClaudeModel['claude-instant-100k'])
     case 'xunfei':
       return new XunfeiBot()

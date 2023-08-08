@@ -19,23 +19,23 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'ChatGPT(Web)',
     avatar: chatgptLogo,
   },
-  poeGPT3: {
+  poegpt3: {
     name: 'GPT-3.5-Turbo',
     avatar: chatgptLogo,
   },
-  "poeGPT3-16k": {
+  "poegpt3-16k": {
     name: 'GPT-3.5-Turbo-16k',
     avatar: chatgptLogo,
   },
-  "poeGPT4-32k": {
+  "poegpt4-32k": {
     name: 'GPT-4-32k',
     avatar: chatgptLogo,
   },  
-  poeGPT4: {
+  poegpt4: {
     name: 'GPT-4',
     avatar: chatgptLogo,
   },
-  poePaLM: {
+  poepalm: {
     name: 'PaLM',
     avatar: bardLogo,
   },
@@ -43,7 +43,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'OpenAI GPT',
     avatar: chatgptLogo,
   },
-  azureGPT: {
+  azuregpt: {
     name: 'Azure GPT',
     avatar: chatgptLogo,
   },
@@ -51,11 +51,11 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Bing',
     avatar: bingLogo,
   },
-  bingCreative: {
+  bingcreative: {
     name: 'Bing-Creative',
     avatar: bingLogo,
   },
-  bingPrecise: {
+  bingprecise: {
     name: 'Bing-Precise',
     avatar: bingLogo,
   },
@@ -67,7 +67,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Claude2-100k',
     avatar: claudeLogo,
   },
-  claudeInstant: {
+  claudeinstant: {
     name: 'claudeInstant-100k',
     avatar: claudeLogo,
   },
@@ -88,7 +88,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     avatar: oasstLogo,
   },
   'llama2-7b': {
-    name: 'Llama-2 13b',
+    name: 'Llama-2 7b',
     avatar: llamaLogo,
   },
   'llama2-13b': {
