@@ -1,3 +1,4 @@
+// index.tsx
 import { Link } from '@tanstack/react-router'
 import cx from 'classnames'
 import { useAtom } from 'jotai'
@@ -12,7 +13,7 @@ import themeIcon from '~/assets/icons/theme.svg'
 import logo from '~/assets/logo.svg'
 import minimalLogo from '~/assets/minimal-logo.svg'
 import { useEnabledBots } from '~app/hooks/use-enabled-bots'
-import { sidebarCollapsedAtom } from '~app/state'
+import { sidebarCollapsedAtom, topicAtom } from '~app/state' // import topicAtom
 import CommandBar from '../CommandBar'
 import GuideModal from '../GuideModal'
 import ThemeSettingModal from '../ThemeSettingModal'
@@ -36,6 +37,7 @@ function Sidebar() {
   const [collapsed, setCollapsed] = useAtom(sidebarCollapsedAtom)
   const [themeSettingModalOpen, setThemeSettingModalOpen] = useState(false)
   const enabledBots = useEnabledBots()
+  const [topic, setTopic] = useAtom(topicAtom) // use topicAtom
   return (
     <aside
       className={cx(
@@ -50,6 +52,20 @@ function Sidebar() {
       />
       {collapsed ? <img src={minimalLogo} className="w-[30px]" /> : <img src={logo} className="w-[79px]" />}
       <div className="flex flex-col gap-[13px] mt-12 overflow-y-auto scrollbar-none">
+
+        {!collapsed && (
+            <Tooltip content={t('Topic')}>
+              {/* Add a text box for the topic */}
+              <input
+                type="text"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+                placeholder="Enter topic"
+                className="p-[6px] rounded-[10px] w-fit cursor-pointer hover:opacity-80 bg-secondary bg-opacity-20"
+              />
+            </Tooltip>
+        )}
+
         <NavLink to="/" text={'All-In-One'} icon={allInOneIcon} iconOnly={collapsed} />
         {enabledBots.map(({ botId, bot }) => (
           <NavLink
