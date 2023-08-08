@@ -12,6 +12,8 @@ import llamaLogo from '~/assets/llama-logo.png'
 import stablelmLogo from '~/assets/stablelm-logo.png'
 import oasstLogo from '~/assets/oasst-logo.svg'
 import rwkvLogo from '~/assets/rwkv-logo.png'
+import guanacoLogo from '~/assets/guanaco-logo.png'
+import wizardlmLogo from '~/assets/wizardlm-logo.png'
 import { BotId } from './bots'
 import i18n from './i18n'
 
@@ -65,11 +67,11 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     avatar: bardLogo,
   },
   claude2: {
-    name: 'Claude',
+    name: 'Claude2-100k',
     avatar: claudeLogo,
   },
   claudeInstant: {
-    name: 'claude100k',
+    name: 'claudeInstant-100k',
     avatar: claudeLogo,
   },
   xunfei: {
@@ -97,9 +99,9 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     avatar: dollyLogo,
   },
   llama: {
-    name: 'LLaMA',
+    name: 'Llama-2 13b',
     avatar: llamaLogo,
-  },
+  },  
   stablelm: {
     name: 'StableLM',
     avatar: stablelmLogo,
@@ -111,6 +113,14 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
   rwkv: {
     name: 'ChatRWKV',
     avatar: rwkvLogo,
+  },
+  guanaco: {
+    name: 'Guanaco',
+    avatar: guanacoLogo,
+  },
+  wizardlm: {
+    name: 'WizardLM',
+    avatar: wizardlmLogo,
   },
 }
 
