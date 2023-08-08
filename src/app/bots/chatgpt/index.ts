@@ -1,6 +1,7 @@
 import { ChatGPTMode, PoeGPTModel, getUserConfig } from '~/services/user-config'
+import * as agent from '~services/agent'
 import { ChatError, ErrorCode } from '~utils/errors'
-import { AsyncAbstractBot } from '../abstract-bot'
+import { AsyncAbstractBot, MessageParams } from '../abstract-bot'
 import { ChatGPTApiBot } from '../chatgpt-api'
 import { ChatGPTAzureApiBot } from '../chatgpt-azure'
 import { ChatGPTWebBot } from '../chatgpt-webapp'
@@ -52,5 +53,13 @@ export class ChatGPTBot extends AsyncAbstractBot {
       return new PoeWebBot(PoeGPTModel['GPT-4-32k'])
     }    
     return new ChatGPTWebBot(config.chatgptWebappModelName)
+  }
+
+  async sendMessage(params: MessageParams) {
+    const { chatgptWebAccess } = await getUserConfig()
+    if (chatgptWebAccess) {
+      return agent.execute(params.prompt, (prompt) => this.doSendMessageGenerator({ ...params, prompt }), params.signal)
+    }
+    return this.doSendMessageGenerator(params)
   }
 }

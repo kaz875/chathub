@@ -4,6 +4,7 @@ import { BingWebBot } from './bing'
 import { ChatGPTBot } from './chatgpt'
 import { ClaudeBot } from './claude'
 import { LMSYSBot } from './lmsys'
+import { PiBot } from './pi'
 import { XunfeiBot } from './xunfei'
 
 export type BotId =
@@ -32,6 +33,10 @@ export type BotId =
   | 'stablelm'
   | 'oasst'
   | 'rwkv'
+  | 'llama'
+  | 'oasst'
+  | 'rwkv'
+  | 'pi'
   | 'guanaco'
   | 'wizardlm'
 
@@ -68,7 +73,7 @@ export function createBotInstance(botId: BotId) {
     case 'xunfei':
       return new XunfeiBot()
     case 'vicuna':
-      return new LMSYSBot('vicuna-13b')
+      return new LMSYSBot('vicuna-33b')
     case 'alpaca':
       return new LMSYSBot('alpaca-13b')
     case 'chatglm':
@@ -83,6 +88,8 @@ export function createBotInstance(botId: BotId) {
         return new LMSYSBot('llama-2-13b-chat')      
     case 'stablelm':
       return new LMSYSBot('stablelm-tuned-alpha-7b')
+    case 'llama':
+      return new LMSYSBot('llama-2-13b-chat')
     case 'oasst':
       return new LMSYSBot('oasst-pythia-12b')
     case 'rwkv':
@@ -91,6 +98,8 @@ export function createBotInstance(botId: BotId) {
       return new LMSYSBot('guanaco-33b')
     case 'wizardlm':
       return new LMSYSBot('wizardlm-13b')      
+    case 'pi':
+      return new PiBot()
   }
 }
 

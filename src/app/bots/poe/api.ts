@@ -1,6 +1,7 @@
 import md5 from 'md5'
 import { ofetch } from 'ofetch'
 import i18n from '~app/i18n'
+import { decodePoeFormkey } from '~services/server-api'
 import { ChatError, ErrorCode } from '~utils/errors'
 import AddMessageBreakMutation from './graphql/AddMessageBreakMutation.graphql?raw'
 import ChatViewQuery from './graphql/ChatViewQuery.graphql?raw'
@@ -8,14 +9,6 @@ import MessageAddedSubscription from './graphql/MessageAddedSubscription.graphql
 import SendMessageMutation from './graphql/SendMessageMutation.graphql?raw'
 import SubscriptionsMutation from './graphql/SubscriptionsMutation.graphql?raw'
 import ViewerStateUpdatedSubscription from './graphql/ViewerStateUpdatedSubscription.graphql?raw'
-
-export async function decodePoeFormkey(headHtml: string): Promise<string> {
-  const resp = await ofetch('https://chathub.gg/api/poe/decode-formkey', {
-    method: 'POST',
-    body: { headHtml },
-  })
-  return resp.formkey
-}
 
 export const GRAPHQL_QUERIES = {
   AddMessageBreakMutation,

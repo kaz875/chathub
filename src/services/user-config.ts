@@ -34,17 +34,19 @@ export enum PoeGPTModel {
 
 export enum PoeClaudeModel {
   'claude-instant' = 'a2',
-  'claude2-100k' = 'a2_2',
-  'claude-instant-100k' = 'a2_100k',
   'PaLM' = 'acouchy',
+  'claude-instant-100k' = 'a2_100k',
+  'claude2-100k' = 'a2_2',
 }
 
 export enum ClaudeMode {
   Poe = 'poe',
   API = 'api',
+  Webapp = 'webapp',
 }
 
 export enum ClaudeAPIModel {
+  'claude-2' = 'claude-2',
   'claude-instant-1' = 'claude-instant-v1',
   'claude-1' = 'claude-v1',
   'claude-1-100k' = 'claude-v1-100k',
@@ -70,7 +72,9 @@ const userConfigWithDefaultValue = {
   enabledBots: Object.keys(CHATBOTS).slice(0, 8) as BotId[],
   claudeApiKey: '',
   claudeMode: ClaudeMode.Poe,
-  claudeApiModel: ClaudeAPIModel['claude-instant-1'],
+  claudeApiModel: ClaudeAPIModel['claude-2'],
+  chatgptWebAccess: false,
+  claudeWebAccess: false,
 }
 
 export type UserConfig = typeof userConfigWithDefaultValue

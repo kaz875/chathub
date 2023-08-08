@@ -48,8 +48,8 @@ function Sidebar() {
         className={cx('w-6 h-6 cursor-pointer my-5', collapsed ? 'rotate-180' : 'self-end')}
         onClick={() => setCollapsed((c) => !c)}
       />
-      {/* {collapsed ? <img src={minimalLogo} className="w-[30px]" /> : <img src={logo} className="w-[79px]" />} */}
-      <div className="flex flex-col gap-3 mt-12 overflow-y-auto scrollbar-none">
+      {collapsed ? <img src={minimalLogo} className="w-[30px]" /> : <img src={logo} className="w-[79px]" />}
+      <div className="flex flex-col gap-[13px] mt-12 overflow-y-auto scrollbar-none">
         <NavLink to="/" text={'All-In-One'} icon={allInOneIcon} iconOnly={collapsed} />
         {enabledBots.map(({ botId, bot }) => (
           <NavLink
@@ -85,7 +85,7 @@ function Sidebar() {
             </Tooltip>
           )}
           {!collapsed && (
-            <Tooltip content={t('Theme')}>
+            <Tooltip content={t('Display')}>
               <a onClick={() => setThemeSettingModalOpen(true)}>
                 <IconButton icon={themeIcon} />
               </a>

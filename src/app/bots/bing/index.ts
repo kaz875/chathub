@@ -1,161 +1,11 @@
+import { ofetch } from 'ofetch'
 import WebSocketAsPromised from 'websocket-as-promised'
 import { BingConversationStyle, getUserConfig } from '~services/user-config'
 import { ChatError, ErrorCode } from '~utils/errors'
 import { AbstractBot, SendMessageParams } from '../abstract-bot'
-// import { ChatResponseMessage, ConversationInfo, InvocationEventType, ConversationResponse } from './types'
-import { convertMessageToMarkdown, websocketUtils } from './utils'
-import { random } from 'lodash-es'
-import { FetchError, ofetch } from 'ofetch'
-import { uuid } from '~utils'
-import { styleOptionsMap } from './styleOptionsMap'
-
-export interface ConversationResponse {
-  conversationId: string
-  clientId: string
-  conversationSignature: string
-  result: {
-    value: string
-    message: null
-  }
-}
-
-export enum InvocationEventType {
-  Invocation = 1,
-  StreamItem = 2,
-  Completion = 3,
-  StreamInvocation = 4,
-  CancelInvocation = 5,
-  Ping = 6,
-  Close = 7,
-}
-
-// https://github.com/bytemate/bingchat-api/blob/main/src/lib.ts
-
-export interface ConversationInfo {
-  conversationId: string
-  clientId: string
-  conversationSignature: string
-  invocationId: number
-  conversationStyle: BingConversationStyle
-}
-
-export interface BingChatResponse {
-  conversationSignature: string
-  conversationId: string
-  clientId: string
-  invocationId: number
-  conversationExpiryTime: Date
-  response: string
-  details: ChatResponseMessage
-}
-
-export interface ChatResponseMessage {
-  text: string
-  author: string
-  createdAt: Date
-  timestamp: Date
-  messageId: string
-  messageType?: string
-  requestId: string
-  offense: string
-  adaptiveCards: AdaptiveCard[]
-  sourceAttributions: SourceAttribution[]
-  feedback: Feedback
-  contentOrigin: string
-  privacy: null
-  suggestedResponses: SuggestedResponse[]
-}
-
-export interface AdaptiveCard {
-  type: string
-  version: string
-  body: Body[]
-}
-
-export interface Body {
-  type: string
-  text: string
-  wrap: boolean
-  size?: string
-}
-
-export interface Feedback {
-  tag: null
-  updatedOn: null
-  type: string
-}
-
-export interface SourceAttribution {
-  providerDisplayName: string
-  seeMoreUrl: string
-  searchQuery: string
-}
-
-export interface SuggestedResponse {
-  text: string
-  author: string
-  createdAt: Date
-  timestamp: Date
-  messageId: string
-  messageType: string
-  offense: string
-  feedback: Feedback
-  contentOrigin: string
-  privacy: null
-}
-
-export async function generateMarkdown(response: BingChatResponse) {
-  // change `[^Number^]` to markdown link
-  const regex = /\[\^(\d+)\^\]/g
-  const markdown = response.details.text.replace(regex, (match, p1) => {
-    const sourceAttribution = response.details.sourceAttributions[Number(p1) - 1]
-    return `[${sourceAttribution.providerDisplayName}](${sourceAttribution.seeMoreUrl})`
-  })
-  return markdown
-}
-
-// https://github.com/acheong08/EdgeGPT/blob/master/src/EdgeGPT.py#L32
-function randomIP() {
-  return `13.${random(104, 107)}.${random(0, 255)}.${random(0, 255)}`
-}
-
-const API_ENDPOINT = 'https://www.bing.com/turing/conversation/create'
-
-export async function createConversation(): Promise<ConversationResponse> {
-  const headers = {
-    'x-ms-client-request-id': uuid(),
-    'x-ms-useragent': 'azsdk-js-api-client-factory/1.0.0-beta.1 core-rest-pipeline/1.10.0 OS/Win32',
-  }
-
-  let resp: ConversationResponse
-  try {
-    resp = await ofetch(API_ENDPOINT, { headers, redirect: 'error' })
-    if (!resp.result) {
-      throw new Error('Invalid response')
-    }
-  } catch (err) {
-    console.error('retry bing create', err)
-    resp = await ofetch(API_ENDPOINT, {
-      headers: { ...headers, 'x-forwarded-for': randomIP() },
-      redirect: 'error',
-    })
-    if (!resp) {
-      throw new FetchError(`Failed to fetch (${API_ENDPOINT})`)
-    }
-  }
-
-  if (resp.result.value !== 'Success') {
-    const message = `${resp.result.value}: ${resp.result.message}`
-    if (resp.result.value === 'UnauthorizedRequest') {
-      throw new ChatError(message, ErrorCode.BING_UNAUTHORIZED)
-    }
-    if (resp.result.value === 'Forbidden') {
-      throw new ChatError(message, ErrorCode.BING_FORBIDDEN)
-    }
-    throw new Error(message)
-  }
-  return resp
-}
+import { createConversation } from './api'
+import { ChatResponseMessage, ConversationInfo, InvocationEventType } from './types'
+import { convertMessageToMarkdown, file2base64, websocketUtils } from './utils'
 
 const OPTIONS_SETS = [
   'nlu_direct_response_filter',
@@ -185,7 +35,7 @@ export class BingWebBot extends AbstractBot {
 
   private conversationContext?: ConversationInfo
 
-  private buildChatRequest(conversation: ConversationInfo, message: string) {
+  private buildChatRequest(conversation: ConversationInfo, message: string, imageUrl?: string) {
     const optionsSets = OPTIONS_SETS
     if (conversation.conversationStyle === BingConversationStyle.Precise) {
       optionsSets.push('h3precise')
@@ -232,6 +82,7 @@ export class BingWebBot extends AbstractBot {
             author: 'user',
             inputMethod: 'Keyboard',
             text: message,
+            imageUrl,
             messageType: 'Chat',
           },
           conversationId: conversation.conversationId,
@@ -259,6 +110,11 @@ export class BingWebBot extends AbstractBot {
 
     const conversation = this.conversationContext!
 
+    let imageUrl: string | undefined
+    if (params.image) {
+      imageUrl = await this.uploadImage(params.image)
+    }
+
     const wsp = new WebSocketAsPromised('wss://sydney.bing.com/sydney/ChatHub', {
       packMessage: websocketUtils.packMessage,
       unpackMessage: websocketUtils.unpackMessage,
@@ -271,7 +127,7 @@ export class BingWebBot extends AbstractBot {
         console.debug('bing ws event', event)
         if (JSON.stringify(event) === '{}') {
           wsp.sendPacked({ type: 6 })
-          wsp.sendPacked(this.buildChatRequest(conversation, params.prompt))
+          wsp.sendPacked(this.buildChatRequest(conversation, params.prompt, imageUrl))
           conversation.invocationId += 1
         } else if (event.type === 6) {
           wsp.sendPacked({ type: 6 })
@@ -289,11 +145,23 @@ export class BingWebBot extends AbstractBot {
         } else if (event.type === 2) {
           const messages = event.item.messages as ChatResponseMessage[] | undefined
           if (!messages) {
+            if (event.item.result.value === 'UnauthorizedRequest') {
+              this.conversationContext = undefined
+              params.onEvent({
+                type: 'ERROR',
+                error: new ChatError('UnauthorizedRequest', ErrorCode.BING_UNAUTHORIZED),
+              })
+              return
+            }
+            const captcha = event.item.result.value === 'CaptchaChallenge'
+            if (captcha) {
+              this.conversationContext = undefined
+            }
             params.onEvent({
               type: 'ERROR',
               error: new ChatError(
                 event.item.result.error || 'Unknown error',
-                event.item.result.value === 'CaptchaChallenge' ? ErrorCode.BING_CAPTCHA : ErrorCode.UNKOWN_ERROR,
+                captcha ? ErrorCode.BING_CAPTCHA : ErrorCode.UNKOWN_ERROR,
               ),
             })
             return
@@ -339,5 +207,31 @@ export class BingWebBot extends AbstractBot {
 
   resetConversation() {
     this.conversationContext = undefined
+  }
+
+  private async uploadImage(image: File) {
+    const formData = new FormData()
+    formData.append(
+      'knowledgeRequest',
+      JSON.stringify({
+        imageInfo: {},
+        knowledgeRequest: {
+          invokedSkills: ['ImageById'],
+          subscriptionId: 'Bing.Chat.Multimodal',
+          invokedSkillsRequestData: { enableFaceBlur: false },
+          convoData: { convoid: '', convotone: 'Balanced' },
+        },
+      }),
+    )
+    formData.append('imageBase64', await file2base64(image))
+    const resp = await ofetch<{ blobId: string }>('https://www.bing.com/images/kblob', {
+      method: 'POST',
+      body: formData,
+    })
+    if (!resp.blobId) {
+      console.debug('kblob response: ', resp)
+      throw new Error('Failed to upload image')
+    }
+    return `https://www.bing.com/images/blob?bcid=${resp.blobId}`
   }
 }

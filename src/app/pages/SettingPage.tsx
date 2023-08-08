@@ -12,10 +12,10 @@ import ChatGPTPoeSettings from '~app/components/Settings/ChatGPTPoeSettings'
 import ChatGPWebSettings from '~app/components/Settings/ChatGPTWebSettings'
 import ClaudeAPISettings from '~app/components/Settings/ClaudeAPISettings'
 import ClaudePoeSettings from '~app/components/Settings/ClaudePoeSettings'
+import ClaudeWebappSettings from '~app/components/Settings/ClaudeWebappSettings'
 import EnabledBotsSettings from '~app/components/Settings/EnabledBotsSettings'
 import KDB from '~app/components/Settings/KDB'
 import { ALL_IN_ONE_PAGE_ID, CHATBOTS } from '~app/consts'
-import { usePremium } from '~app/hooks/use-premium'
 import { exportData, importData } from '~app/utils/export'
 import {
   BingConversationStyle,
@@ -39,7 +39,6 @@ function SettingPage() {
   const [shortcuts, setShortcuts] = useState<string[]>([])
   const [userConfig, setUserConfig] = useState<UserConfig | undefined>(undefined)
   const [dirty, setDirty] = useState(false)
-  const premiumState = usePremium()
 
   useEffect(() => {
     Browser.commands.getAll().then((commands) => {
@@ -134,7 +133,7 @@ function SettingPage() {
         <div className="flex flex-col gap-1">
           <p className="font-bold text-lg">ChatGPT</p>
           <RadioGroup
-            options={Object.entries(ChatGPTMode).map(([k, v]) => ({ label: `${k} Mode`, value: v }))}
+            options={Object.entries(ChatGPTMode).map(([k, v]) => ({ label: `${k} ${t('Mode')}`, value: v }))}
             value={userConfig.chatgptMode}
             onChange={(v) => updateConfigValue({ chatgptMode: v as ChatGPTMode })}
           />
@@ -151,12 +150,14 @@ function SettingPage() {
         <div className="flex flex-col gap-1">
           <p className="font-bold text-lg">Claude</p>
           <RadioGroup
-            options={Object.entries(ClaudeMode).map(([k, v]) => ({ label: `${k} Mode`, value: v }))}
+            options={Object.entries(ClaudeMode).map(([k, v]) => ({ label: `${k} ${t('Mode')}`, value: v }))}
             value={userConfig.claudeMode}
             onChange={(v) => updateConfigValue({ claudeMode: v as ClaudeMode })}
           />
           {userConfig.claudeMode === ClaudeMode.API ? (
             <ClaudeAPISettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
+          ) : userConfig.claudeMode === ClaudeMode.Webapp ? (
+            <ClaudeWebappSettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
           ) : (
             <ClaudePoeSettings userConfig={userConfig} updateConfigValue={updateConfigValue} />
           )}
