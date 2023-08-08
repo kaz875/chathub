@@ -30,6 +30,7 @@ export type BotId =
   | 'dolly'
   | 'llama2-7b'
   | 'llama2-13b'  
+  | 'llama2-70b'
   | 'stablelm'
   | 'oasst'
   | 'rwkv'
@@ -86,7 +87,9 @@ export function createBotInstance(botId: BotId) {
     case 'llama2-7b':
       return new LMSYSBot('llama-2-7b-chat')           
     case 'llama2-13b':
-      return new LMSYSBot('llama-2-13b-chat')       
+      return new LMSYSBot('llama-2-13b-chat')   
+    case 'llama2-70b':
+      return new ClaudeBot(PoeClaudeModel['llama2-70b'])
     case 'oasst':
       return new LMSYSBot('oasst-pythia-12b')
     case 'rwkv':

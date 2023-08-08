@@ -99,6 +99,10 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Llama-2 13b',
     avatar: llamaLogo,
   },
+  'llama2-70b': {
+    name: 'Llama-2 70b',
+    avatar: llamaLogo,
+  },  
   stablelm: {
     name: 'StableLM',
     avatar: oasstLogo,
