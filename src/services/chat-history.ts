@@ -1,5 +1,5 @@
 import { zip } from 'lodash-es'
-// import Browser from 'webextension-polyfill' // not used
+import Browser from 'webextension-polyfill'
 import { BotId } from '~app/bots'
 import { ChatMessageModel } from '~types'
 
@@ -69,13 +69,23 @@ async function loadConversationMessages(botId: BotId, topic: string, cid: string
 
 // Add a topic parameter to setConversationMessages
 export async function setConversationMessages(botId: BotId, topic: string, cid: string, messages: ChatMessageModel[]) {
+  
+  // save to firestore
   const conversationRef = doc(db, `conversations/${botId}/${topic}`, cid)
-  // Use merge: true option to create or update the document
   await setDoc(conversationRef, { id: cid, createdAt: Date.now() }, { merge: true })
   messages.forEach(async message => {
     const messageRef = doc(collection(db, `conversations/${botId}/${topic}/${cid}/messages`), message.id)
     await setDoc(messageRef, message);
   })
+
+  // save to localStorage
+  const conversations = await loadHistoryConversations(botId, topic)
+  if (!conversations.some((c) => c.id === cid)) {
+    conversations.unshift({ id: cid, createdAt: Date.now() })
+    await Browser.storage.local.set({ [`conversations:${botId}`]: conversations })
+  }
+  const key = `conversation:${topic}:${botId}:${cid}:messages`
+  await Browser.storage.local.set({ [key]: messages })
 }
 
 // Add a topic parameter to loadHistoryMessages
