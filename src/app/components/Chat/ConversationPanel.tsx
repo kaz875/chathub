@@ -18,6 +18,10 @@ import ChatMessageInput from './ChatMessageInput'
 import ChatMessageList from './ChatMessageList'
 import WebAccessCheckbox from './WebAccessCheckbox'
 
+// Import topicAtom and useAtom
+import { topicAtom } from '~app/state'
+import { useAtom } from 'jotai'
+
 interface Props {
   botId: BotId
   bot: BotInstance
@@ -44,11 +48,25 @@ const ConversationPanel: FC<Props> = (props) => {
     }
   }, [props.resetConversation])
 
+  // Use topicAtom with useAtom hook
+  const [topic, setTopic] = useAtom(topicAtom)
+
+  // Add a state variable for the warning message
+  const [warning, setWarning] = useState('')
+
+  // Modify the onSubmit function to check the topic
   const onSubmit = useCallback(
     async (input: string, image?: File) => {
+      // If the topic is empty, show a warning message and return
+      if (!topic) {
+        setWarning('Please specify a topic before sending any messages.')
+        return
+      }
+      // Otherwise, clear the warning message and proceed with the normal function
+      setWarning('')
       props.onUserSendMessage(input as string, image)
     },
-    [props],
+    [props, topic], // Add topic as a dependency
   )
 
   const resetConversation = useCallback(() => {
@@ -126,6 +144,12 @@ const ConversationPanel: FC<Props> = (props) => {
             {mode === 'compact' && <span className="font-medium text-xs text-light-text">Send to {botInfo.name}</span>}
             <hr className="grow border-primary-border" />
           </div>
+
+          {/* Add a warning message if the topic is empty */}
+          {warning && (
+            <div className="text-sm text-red-500">{warning}</div>
+          )}
+
           <ChatMessageInput
             mode={mode}
             disabled={props.generating}
