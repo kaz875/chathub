@@ -1,5 +1,5 @@
 import { cx } from '~/utils'
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react'
+import { FC, ReactNode, useCallback, useMemo, useState, useEffect } from 'react' // Import useEffect
 import { useTranslation } from 'react-i18next'
 import clearIcon from '~/assets/icons/clear.svg'
 import historyIcon from '~/assets/icons/history.svg'
@@ -54,16 +54,25 @@ const ConversationPanel: FC<Props> = (props) => {
   // Add a state variable for the warning message
   const [warning, setWarning] = useState('')
 
+  // Add a useEffect hook to check the topic and set the warning
+  useEffect(() => {
+    // If the topic is empty, show a warning message
+    if (!topic) {
+      setWarning('Please specify a topic before sending any messages.')
+    } else {
+      // Otherwise, clear the warning message
+      setWarning('')
+    }
+  }, [topic]) // Add topic as a dependency
+
   // Modify the onSubmit function to check the topic
   const onSubmit = useCallback(
     async (input: string, image?: File) => {
-      // If the topic is empty, show a warning message and return
+      // If the topic is empty, return without sending any messages
       if (!topic) {
-        setWarning('Please specify a topic before sending any messages.')
         return
       }
-      // Otherwise, clear the warning message and proceed with the normal function
-      setWarning('')
+      // Otherwise, proceed with the normal function
       props.onUserSendMessage(input as string, image)
     },
     [props, topic], // Add topic as a dependency
@@ -150,9 +159,10 @@ const ConversationPanel: FC<Props> = (props) => {
             <div className="text-sm text-red-500">{warning}</div>
           )}
 
+          {/* Add the disabled prop to the ChatMessageInput component */}
           <ChatMessageInput
             mode={mode}
-            disabled={props.generating}
+            disabled={!topic || props.generating} // Disable the input if the topic is empty or the message is generating
             placeholder={mode === 'compact' ? '' : undefined}
             onSubmit={onSubmit}
             autoFocus={mode === 'full'}
