@@ -1,12 +1,12 @@
-import { FC, useCallback } from 'react'
+import { useNavigate } from '@tanstack/react-router'
+import { FC, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { trackEvent } from '~app/plausible'
 import Button from '../Button'
 import Dialog from '../Dialog'
 import FeatureList from './FeatureList'
-import PriceSection from './PriceSection'
 import LovedBy from './LovedBy'
-import { trackEvent } from '~app/plausible'
-import { useNavigate } from '@tanstack/react-router'
+import PriceSection from './PriceSection'
 
 interface Props {
   open: boolean
@@ -18,9 +18,15 @@ const PremiumModal: FC<Props> = (props) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if (props.open) {
+      trackEvent('show_premium_modal', { source: props.source })
+    }
+  }, [props.open, props.source])
+
   const onClickBuy = useCallback(() => {
-    trackEvent('click_buy_premium')
-    navigate({ to: '/premium' })
+    trackEvent('click_buy_premium', { source: 'premium_modal' })
+    navigate({ to: '/premium', search: { source: 'after_click_buy_premium' } })
   }, [navigate])
 
   return (

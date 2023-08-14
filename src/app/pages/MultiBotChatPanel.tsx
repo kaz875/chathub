@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import { cx } from '~/utils'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { uniqBy } from 'lodash-es'
@@ -54,9 +54,9 @@ const GeneralChatPanel: FC<{
         return
       }
       uniqBy(chats, (c) => c.botId).forEach((c) => c.sendMessage(input, image))
-      trackEvent('send_messages', { count: chats.length })
+      trackEvent('send_messages', { layout, disabled })
     },
-    [chats, disabled],
+    [chats, disabled, layout],
   )
 
   const onSwitchBot = useCallback(

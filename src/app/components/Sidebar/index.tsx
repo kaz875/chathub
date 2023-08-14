@@ -1,6 +1,6 @@
 // index.tsx
 import { Link } from '@tanstack/react-router'
-import cx from 'classnames'
+import { cx } from '~/utils'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
