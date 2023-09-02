@@ -1,9 +1,8 @@
-// state.ts
 import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
-import { atomWithStorage } from 'jotai/utils'
-import { atomFamily } from 'jotai/utils'
-import { createBotInstance, BotId } from '~app/bots'
+import { atomFamily, atomWithStorage } from 'jotai/utils'
+import { BotId, createBotInstance } from '~app/bots'
+import { FeatureId } from '~app/components/Premium/FeatureList'
 import { getDefaultThemeColor } from '~app/utils/color-scheme'
 import { ChatMessageModel } from '~types'
 import { uuid } from '~utils'
@@ -30,4 +29,6 @@ export const sidebarCollapsedAtom = atomWithStorage('sidebarCollapsed', false, u
 export const themeColorAtom = atomWithStorage('themeColor', getDefaultThemeColor())
 export const followArcThemeAtom = atomWithStorage('followArcTheme', false)
 export const sidePanelBotAtom = atomWithStorage<BotId>('sidePanelBot', 'chatgpt')
+export const showDiscountModalAtom = atom(false)
+export const showPremiumModalAtom = atom<false | true | FeatureId>(false)
 export const topicAtom = atomWithStorage('topic', '') // create a new atom for the topic with storage

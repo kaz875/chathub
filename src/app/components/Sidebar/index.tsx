@@ -1,7 +1,6 @@
 // index.tsx
 import { Link } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
-import { cx } from '~/utils'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +12,7 @@ import settingIcon from '~/assets/icons/setting.svg'
 import themeIcon from '~/assets/icons/theme.svg'
 import logo from '~/assets/logo.svg'
 import minimalLogo from '~/assets/minimal-logo.svg'
+import { cx } from '~/utils'
 import { useEnabledBots } from '~app/hooks/use-enabled-bots'
 import { sidebarCollapsedAtom, topicAtom } from '~app/state' // import topicAtom
 import CommandBar from '../CommandBar'
@@ -143,7 +143,7 @@ function Sidebar() {
       </div>
       <CommandBar />
       <GuideModal />
-      {themeSettingModalOpen && <ThemeSettingModal open={true} onClose={() => setThemeSettingModalOpen(false)} />}
+      <ThemeSettingModal open={themeSettingModalOpen} onClose={() => setThemeSettingModalOpen(false)} />
     </motion.aside>
   )
 }

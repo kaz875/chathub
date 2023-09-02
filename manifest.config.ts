@@ -23,8 +23,12 @@ export default defineManifest(async (env) => {
       'https://*.openai.com/',
       'https://bard.google.com/',
       'https://*.chathub.gg/',
+      'https://*.duckduckgo.com/',
+      'https://*.poe.com/',
+      'https://*.anthropic.com/',
+      'https://*.claude.ai/',
     ],
-    optional_host_permissions: ['https://*/*'],
+    optional_host_permissions: ['https://*/*', 'wss://*/*'],
     permissions: ['storage', 'unlimitedStorage', 'sidePanel', 'declarativeNetRequestWithHostAccess'],
     content_scripts: [
       {
