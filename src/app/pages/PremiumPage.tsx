@@ -1,9 +1,11 @@
 import { useSearch } from '@tanstack/react-router'
+import ConfettiExplosion from 'react-confetti-explosion'
 import { useAtom } from 'jotai'
 import { useCallback, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import Button from '~app/components/Button'
+import DiscountBadge from '~app/components/Premium/DiscountBadge'
 import FeatureList from '~app/components/Premium/FeatureList'
 import PriceSection from '~app/components/Premium/PriceSection'
 import { usePremium } from '~app/hooks/use-premium'
@@ -18,6 +20,7 @@ function PremiumPage() {
   const premiumState = usePremium()
   const [deactivating, setDeactivating] = useState(false)
   const { source } = useSearch({ from: premiumRoute.id })
+  const [isExploding, setIsExploding] = useState(false)
 
   const activateLicense = useCallback(() => {
     const key = window.prompt('Enter your license key', '')
@@ -43,22 +46,23 @@ function PremiumPage() {
     <div className="flex flex-col bg-primary-background dark:text-primary-text rounded-[20px] h-full p-[50px] overflow-y-auto">
       <h1 className="font-bold text-[40px] leading-none text-primary-text">{t('Premium')}</h1>
       {!premiumState.activated && (
-        <p className="bg-[#FAE387] text-[#303030] w-fit rounded-[5px] px-2 py-[4px] text-sm font-semibold mt-9">
-          {t('Earlybird price')}
-        </p>
-      )}
-      {!premiumState.activated && (
-        <div className="mt-5">
+        <div className="flex flex-col gap-4 mt-9">
+          <DiscountBadge />
           <PriceSection />
         </div>
       )}
       <div className="mt-8">
-        <FeatureList textSize="normal" />
+        <FeatureList />
       </div>
       <div className="flex flex-row items-center gap-3 mt-10">
         {premiumState.activated ? (
           <>
-            <Button text={t('🎉 License activated')} color="primary" className="w-fit !py-2" />
+            <Button
+              text={t('🎉 License activated')}
+              color="primary"
+              className="w-fit !py-2"
+              onClick={() => setIsExploding(true)}
+            />
             <Button
               text={t('Deactivate')}
               className="w-fit !py-2"
@@ -96,6 +100,7 @@ function PremiumPage() {
       </div>
       {!!premiumState.error && <span className="mt-3 text-red-500 font-medium">{premiumState.error}</span>}
       <Toaster position="top-right" />
+      {isExploding && <ConfettiExplosion duration={3000} onComplete={() => setIsExploding(false)} />}
     </div>
   )
 }

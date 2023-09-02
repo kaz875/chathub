@@ -6,6 +6,7 @@ import { ChatGPTApiBot } from '../chatgpt-api'
 import { ChatGPTAzureApiBot } from '../chatgpt-azure'
 import { ChatGPTWebBot } from '../chatgpt-webapp'
 import { PoeWebBot } from '../poe'
+import { OpenRouterBot } from '../openrouter'
 
 export class ChatGPTBot extends AsyncAbstractBot {
   chatgptModeSpecified:ChatGPTMode;
@@ -51,7 +52,7 @@ export class ChatGPTBot extends AsyncAbstractBot {
     }    
     if (this.chatgptModeSpecified === ChatGPTMode.PoeGPT32k) {
       return new PoeWebBot(PoeGPTModel['GPT-4-32k'])
-    }    
+    }
     return new ChatGPTWebBot(config.chatgptWebappModelName)
   }
 

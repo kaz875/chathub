@@ -5,6 +5,8 @@ import * as agent from '~services/agent'
 import { ClaudeApiBot } from '../claude-api'
 import { ClaudeWebBot } from '../claude-web'
 import { PoeWebBot } from '../poe'
+import { ChatError, ErrorCode } from '~utils/errors'
+import { OpenRouterBot } from '../openrouter'
 
 export class ClaudeBot extends AsyncAbstractBot {
 

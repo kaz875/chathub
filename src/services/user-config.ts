@@ -18,6 +18,8 @@ export enum ChatGPTMode {
   PoeGPT16k = 'poeGPT3-16k',  
   PoeGPT4 = 'poeGPT4',    
   PoeGPT32k = 'poeGPT4-32k',      
+  Poe = 'poe',
+  OpenRouter = 'openrouter',
 }
 
 export enum ChatGPTWebModel {
@@ -44,6 +46,7 @@ export enum ClaudeMode {
   Poe = 'poe',
   API = 'api',
   Webapp = 'webapp',
+  OpenRouter = 'openrouter',
 }
 
 export enum ClaudeAPIModel {
@@ -52,6 +55,11 @@ export enum ClaudeAPIModel {
   'claude-1' = 'claude-v1',
   'claude-1-100k' = 'claude-v1-100k',
   'claude-instant-1-100k' = 'claude-instant-v1-100k',
+}
+
+export enum OpenRouterClaudeModel {
+  'claude-2' = 'claude-2',
+  'claude-instant-v1' = 'claude-instant-v1',
 }
 
 const userConfigWithDefaultValue = {
@@ -76,6 +84,9 @@ const userConfigWithDefaultValue = {
   claudeApiModel: ClaudeAPIModel['claude-2'],
   chatgptWebAccess: false,
   claudeWebAccess: false,
+  openrouterOpenAIModel: CHATGPT_API_MODELS[0] as (typeof CHATGPT_API_MODELS)[number],
+  openrouterClaudeModel: OpenRouterClaudeModel['claude-2'],
+  openrouterApiKey: '',
 }
 
 export type UserConfig = typeof userConfigWithDefaultValue

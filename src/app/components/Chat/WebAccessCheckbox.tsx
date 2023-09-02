@@ -29,12 +29,16 @@ const WebAccessCheckbox: FC<Props> = (props) => {
   }, [props.botId])
 
   useEffect(() => {
-    getUserConfig().then((config) => {
-      if (configKey) {
-        setChecked(config[configKey])
-      }
-    })
-  }, [configKey, props.botId])
+    if (!configKey) {
+      return
+    }
+    if (premiumState.activated === false) {
+      setChecked(false)
+      updateUserConfig({ [configKey]: false })
+    } else if (premiumState.activated) {
+      getUserConfig().then((config) => setChecked(config[configKey]))
+    }
+  }, [configKey, premiumState.activated])
 
   const onToggle = useCallback(
     async (newValue: boolean) => {
@@ -68,7 +72,7 @@ const WebAccessCheckbox: FC<Props> = (props) => {
           </Switch.Label>
         </div>
       </Switch.Group>
-      <PremiumFeatureModal open={premiumModalOpen} setOpen={setPremiumModalOpen} source="web-access-modal" />
+      <PremiumFeatureModal open={premiumModalOpen} setOpen={setPremiumModalOpen} feature="web-access" />
     </div>
   )
 }
