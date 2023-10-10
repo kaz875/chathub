@@ -37,17 +37,22 @@ English &nbsp;&nbsp;|&nbsp;&nbsp; [Indonesia](README_IN.md) &nbsp;&nbsp;|&nbsp;&
 
 </div>
 
-##
+---
+
+**Help nominate me as a GitHub Star**: https://stars.github.com/nominate/
+> I nominate @wong2 as a GitHub Star
+
+---
 
 ## 📷 Screenshot
 
-![Screenshot](screenshots/extension.png?raw=true)
+![Screenshot](screenshots/extension.png?raw=true#gh-light-mode-only)
 
-![Screenshot (Dark Mode)](screenshots/dark.png?raw=true)
+![Screenshot (Dark Mode)](screenshots/dark.png?raw=true#gh-dark-mode-only)
 
 ## ✨ Features
 
-- 🤖 Use different chatbots in one app, currently supporting ChatGPT, new Bing Chat, Google Bard, Claude, and 10+ open-source models including Alpaca, Vicuna, ChatGLM etc
+- 🤖 Use different chatbots in one app, currently supporting ChatGPT, new Bing Chat, Google Bard, Claude, and open-source models including LLama2, Vicuna, ChatGLM etc
 - 💬 Chat with multiple chatbots at the same time, making it easy to compare their answers
 - 🚀 Support ChatGPT API and GPT-4 Browsing
 - 🔍 Shortcut to quickly activate the app anywhere in the browser
@@ -65,17 +70,14 @@ English &nbsp;&nbsp;|&nbsp;&nbsp; [Indonesia](README_IN.md) &nbsp;&nbsp;|&nbsp;&
 - Bing Chat
 - Google Bard
 - Claude 2 (via Webapp/API/Poe)
-- iFlytek Spark
+- LLaMA 2
 - ChatGLM
 - Pi by Inflection
-- Alpaca
 - Vicuna
-- Koala
-- Dolly
-- LLaMA
-- StableLM
-- OpenAssistant
-- ChatRWKV
+- WizardLM
+- iFlytek Spark
+- Tongyi Qianwen
+- Baichuan
 - ...
 
 ## 🔧 Manual Installation

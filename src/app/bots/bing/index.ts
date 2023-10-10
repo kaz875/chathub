@@ -20,13 +20,30 @@ const OPTIONS_SETS = [
   'iycapbing',
   'galileo',
   'saharagenconv5',
-  'fluxhint',
-  'glfluxv13',
-  'uquopt',
-  'bof107v2',
-  'streamw',
-  'rctechalwlst',
-  'agicert',
+  'log2sph',
+  'savememfilter',
+  'uprofgen',
+  'uprofupd',
+  'uprofupdasy',
+  'vidsumsnip',
+]
+
+const SLICE_IDS = [
+  'tnaenableux',
+  'adssqovr',
+  'tnaenable',
+  'arankc_1_9_3',
+  'rankcf',
+  '0731ziv2s0',
+  '926buffall',
+  'inosanewsmob',
+  'wrapnoins',
+  'prechr',
+  'sydtransl',
+  '806log2sph',
+  '927uprofasy',
+  '919vidsnip',
+  '829suggtrims0',
 ]
 export class BingWebBot extends AbstractBot {
   bingChatStyle:BingConversationStyle;
@@ -60,25 +77,8 @@ export class BingWebBot extends AbstractBot {
             'GenerateContentQuery',
             'SearchQuery',
           ],
-          sliceIds: [
-            '825asmetrics',
-            'gbacf',
-            'divkorbl2p',
-            'emovoice',
-            'tts3',
-            'wrapuxslimt',
-            'rbingchromecf',
-            'sydconfigoptc',
-            '0824cntor',
-            '816bof107v2',
-            '0529streamw',
-            'streamw',
-            '178gentech',
-            '824fluxhi52s0',
-            '0825agicert',
-            '621alllocs0',
-            '727nrprdrs0',
-          ],
+          sliceIds: SLICE_IDS,
+          verbosity: 'verbose',
           scenario: 'SERP',
           plugins: [],
           isStartOfSession: conversation.invocationId === 0,
@@ -113,6 +113,7 @@ export class BingWebBot extends AbstractBot {
       this.conversationContext = {
         conversationId: conversation.conversationId,
         conversationSignature: conversation.conversationSignature,
+        encryptedConversationSignature: conversation.encryptedConversationSignature,
         clientId: conversation.clientId,
         invocationId: 0,
         conversationStyle: this.bingChatStyle //bingConversationStyle,
@@ -126,7 +127,7 @@ export class BingWebBot extends AbstractBot {
       imageUrl = await this.uploadImage(params.image)
     }
 
-    const wsp = new WebSocketAsPromised('wss://sydney.bing.com/sydney/ChatHub', {
+    const wsp = new WebSocketAsPromised(this.buildWssUrl(conversation.encryptedConversationSignature), {
       packMessage: websocketUtils.packMessage,
       unpackMessage: websocketUtils.unpackMessage,
     })
@@ -250,5 +251,12 @@ export class BingWebBot extends AbstractBot {
       throw new Error('Failed to upload image')
     }
     return `https://www.bing.com/images/blob?bcid=${resp.blobId}`
+  }
+
+  private buildWssUrl(encryptedConversationSignature: string | undefined) {
+    if (!encryptedConversationSignature) {
+      return 'wss://sydney.bing.com/sydney/ChatHub'
+    }
+    return `wss://sydney.bing.com/sydney/ChatHub?sec_access_token=${encodeURIComponent(encryptedConversationSignature)}`
   }
 }

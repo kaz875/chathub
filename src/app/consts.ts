@@ -1,16 +1,16 @@
-import alpacaLogo from '~/assets/alpaca-logo.png'
 import claudeLogo from '~/assets/anthropic-logo.png'
+import baichuanLogo from '~/assets/baichuan-logo.png'
 import bardLogo from '~/assets/bard-logo.svg'
 import bingLogo from '~/assets/bing-logo.svg'
 import chatglmLogo from '~/assets/chatglm-logo.svg'
 import chatgptLogo from '~/assets/chatgpt-logo.svg'
 import llamaLogo from '~/assets/llama-logo.png'
-import oasstLogo from '~/assets/oasst-logo.svg'
 import piLogo from '~/assets/pi-logo.png'
 import rwkvLogo from '~/assets/rwkv-logo.png'
 import guanacoLogo from '~/assets/guanaco-logo.png'
-import wizardlmLogo from '~/assets/wizardlm-logo.png'
+import qianwenLogo from '~/assets/qianwen-logo.png'
 import vicunaLogo from '~/assets/vicuna-logo.jpg'
+import wizardlmLogo from '~/assets/wizardlm-logo.png'
 import xunfeiLogo from '~/assets/xunfei-logo.png'
 import { BotId } from './bots'
 
@@ -30,7 +30,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
   "poegpt4-32k": {
     name: 'GPT-4-32k',
     avatar: chatgptLogo,
-  },  
+  },
   poegpt4: {
     name: 'GPT-4',
     avatar: chatgptLogo,
@@ -70,14 +70,10 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
   'claude2-100k': {
     name: 'Claude2-100k',
     avatar: claudeLogo,
-  },  
+  },
   claudeinstant: {
     name: 'claudeInstant-100k',
     avatar: claudeLogo,
-  },
-  alpaca: {
-    name: 'Alpaca',
-    avatar: alpacaLogo,
   },
   vicuna: {
     name: 'Vicuna',
@@ -89,7 +85,7 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
   },
   dolly: {
     name: 'Dolly',
-    avatar: oasstLogo,
+    avatar: piLogo,
   },
   'llama2-7b': {
     name: 'Llama-2 7b',
@@ -102,10 +98,14 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
   'llama2-70b': {
     name: 'Llama-2 70b',
     avatar: llamaLogo,
-  },  
+  },
   stablelm: {
     name: 'StableLM',
-    avatar: oasstLogo,
+    avatar: piLogo,
+  },
+  wizardlm: {
+    name: 'WizardLM',
+    avatar: wizardlmLogo,
   },
   chatglm: {
     name: 'ChatGLM2',
@@ -115,22 +115,22 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'iFlytek Spark',
     avatar: xunfeiLogo,
   },
+  qianwen: {
+    name: 'Qianwen',
+    avatar: qianwenLogo,
+  },
+  baichuan: {
+    name: 'Baichuan',
+    avatar: baichuanLogo,
+  },
   oasst: {
-    name: 'OpenAssistant',
-    avatar: oasstLogo,
+    name: '',
+    avatar: rwkvLogo
   },
   rwkv: {
-    name: 'ChatRWKV',
-    avatar: rwkvLogo,
-  },
-  guanaco: {
-    name: 'Guanaco',
-    avatar: guanacoLogo,
-  },
-  wizardlm: {
-    name: 'WizardLM',
-    avatar: wizardlmLogo,
-  },
+    name: '',
+    avatar: rwkvLogo
+  }
 }
 
 export const CHATGPT_HOME_URL = 'https://chat.openai.com'
