@@ -58,7 +58,7 @@
     "cmdk": "^0.2.0",
     "dayjs": "^1.11.9",
     "eventsource-parser": "^1.0.0",
-    "firebase": "^10.1.0",
+    "firebase": "^9.1.0",
     "framer-motion": "^10.16.0",
     "fuse.js": "^6.6.2",
     "github-markdown-css": "^5.2.0",
