@@ -2711,17 +2711,14 @@
   resolved "https://registry.npmjs.org/@tanstack/store/-/store-0.0.1-beta.81.tgz"
   integrity sha512-OYFQ4RmDjSIzJnJrhsvpSpM4+lO/3NBaXGloC5IO3YNm0Ewgy/MSCePJgUamstXPmBAaLC2KEgi4O9FHyzA6lw==
 
-<<<<<<< HEAD
-"@types/chrome@^0.0.241":
-  version "0.0.241"
-  resolved "https://registry.npmjs.org/@types/chrome/-/chrome-0.0.241.tgz"
-  integrity sha512-3WxC2D8zhyDnCU1GxyznoyUulLH6ReLWUWQm5LSM7S1rvV9w+k8TUNbWrFavk6zz2E1ws05lNawnSa7rK5kY8Q==
+"@types/chrome@^0.0.244":
+  version "0.0.244"
+  resolved "https://registry.npmjs.org/@types/chrome/-/chrome-0.0.244.tgz"
+  integrity sha512-pC8kBWuUqGhG6S5d3E44a2f1TA2XHX/sXfCIrrDpA4K65Ozzw3mYQjuvMOTdSUCx4HjJhp4zuZh6fKOH3UdA1g==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
 
-=======
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
 "@types/debug@^4.0.0":
   version "4.1.7"
   resolved "https://registry.npmjs.org/@types/debug/-/debug-4.1.7.tgz"
@@ -2729,7 +2726,6 @@
   dependencies:
     "@types/ms" "*"
 
-<<<<<<< HEAD
 "@types/filesystem@*":
   version "0.0.32"
   resolved "https://registry.npmjs.org/@types/filesystem/-/filesystem-0.0.32.tgz"
@@ -2743,12 +2739,10 @@
   integrity sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==
 
 "@types/har-format@*":
-  version "1.2.11"
-  resolved "https://registry.npmjs.org/@types/har-format/-/har-format-1.2.11.tgz"
-  integrity sha512-T232/TneofqK30AD1LRrrf8KnjLvzrjWDp7eWST5KoiSzrBfRsLrWDPk4STQPW4NZG6v2MltnduBVmakbZOBIQ==
+  version "1.2.12"
+  resolved "https://registry.npmjs.org/@types/har-format/-/har-format-1.2.12.tgz"
+  integrity sha512-P20p/YBrqUBmzD6KhIQ8EiY4/RRzlekL4eCvfQnulFPfjmiGxKIoyCeI7qam5I7oKH3P8EU4ptEi0EfyGoLysw==
 
-=======
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
 "@types/hast@^2.0.0":
   version "2.3.4"
   resolved "https://registry.npmjs.org/@types/hast/-/hast-2.3.4.tgz"
@@ -2756,7 +2750,11 @@
   dependencies:
     "@types/unist" "*"
 
-<<<<<<< HEAD
+"@types/humanize-duration@^3.27.1":
+  version "3.27.1"
+  resolved "https://registry.npmjs.org/@types/humanize-duration/-/humanize-duration-3.27.1.tgz"
+  integrity sha512-K3e+NZlpCKd6Bd/EIdqjFJRFHbrq5TzPPLwREk5Iv/YoIjQrs6ljdAUCo+Lb2xFlGNOjGSE0dqsVD19cZL137w==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.4"
   resolved "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz"
@@ -2775,12 +2773,6 @@
   integrity sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==
   dependencies:
     "@types/istanbul-lib-report" "*"
-=======
-"@types/humanize-duration@^3.27.1":
-  version "3.27.1"
-  resolved "https://registry.npmmirror.com/@types/humanize-duration/-/humanize-duration-3.27.1.tgz#f14740d1f585a0a8e3f46359b62fda8b0eaa31e7"
-  integrity sha512-K3e+NZlpCKd6Bd/EIdqjFJRFHbrq5TzPPLwREk5Iv/YoIjQrs6ljdAUCo+Lb2xFlGNOjGSE0dqsVD19cZL137w==
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
 
 "@types/json-schema@^7.0.9":
   version "7.0.12"
@@ -2921,17 +2913,10 @@
   resolved "https://registry.npmjs.org/@types/uuid/-/uuid-9.0.2.tgz"
   integrity sha512-kNnC1GFBLuhImSnV7w4njQkUiJi0ZXUycu1rUaouPqiKlXkh77JKgdRnTAp1x5eBwcIwbtI+3otwzuIDEuDoxQ==
 
-<<<<<<< HEAD
-"@types/webextension-polyfill@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.npmjs.org/@types/webextension-polyfill/-/webextension-polyfill-0.10.1.tgz"
-  integrity sha512-Sdg+E2F5JUbhkE1qX15QUxpyhfMFKRGJqND9nb1C0gNN4NR7kCV31/1GvNbg6Xe+m/JElJ9/lG5kepMzjGPuQw==
-=======
 "@types/webextension-polyfill@^0.10.2":
   version "0.10.2"
-  resolved "https://registry.npmmirror.com/@types/webextension-polyfill/-/webextension-polyfill-0.10.2.tgz#14175d96d76339fce4d2b9b7837846148296cb5a"
+  resolved "https://registry.npmjs.org/@types/webextension-polyfill/-/webextension-polyfill-0.10.2.tgz"
   integrity sha512-L+T72DVTi/1azY6gw7PRmL49kvobLKQQWfOmHDBRSCkAvaCV4wk222J3ZODYA9Gf/UqUvtItu8FPJgWX5ktO9g==
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
 
 "@types/yargs-parser@*":
   version "21.0.0"
@@ -3592,7 +3577,11 @@ chokidar@^3.5.3, "chokidar@>=3.0.0 <4.0.0":
   optionalDependencies:
     fsevents "~2.3.2"
 
-<<<<<<< HEAD
+chrome-types@^0.1.231:
+  version "0.1.231"
+  resolved "https://registry.npmjs.org/chrome-types/-/chrome-types-0.1.231.tgz"
+  integrity sha512-h3bavs+tROAeGE2pLJckJNQzFU5HN2yYEKEG+2byq1+MWrycBYxklCl6gRaI3Jjeyn1DzTTrFToOvdRCQfc/kg==
+
 ci-info@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-2.0.0.tgz"
@@ -3602,12 +3591,6 @@ ci-info@^3.2.0:
   version "3.8.0"
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-3.8.0.tgz"
   integrity sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==
-=======
-chrome-types@^0.1.231:
-  version "0.1.231"
-  resolved "https://registry.npmmirror.com/chrome-types/-/chrome-types-0.1.231.tgz#be8730c7c43e1e2d2e27691ea4a664b440b35e5d"
-  integrity sha512-h3bavs+tROAeGE2pLJckJNQzFU5HN2yYEKEG+2byq1+MWrycBYxklCl6gRaI3Jjeyn1DzTTrFToOvdRCQfc/kg==
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
 
 classnames@2.3.1:
   version "2.3.1"
@@ -3926,15 +3909,9 @@ csstype@^3.0.10, csstype@^3.0.2:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
-<<<<<<< HEAD
-dayjs@^1.8.15:
+dayjs@^1.11.9, dayjs@^1.8.15:
   version "1.11.9"
   resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz"
-=======
-dayjs@^1.11.9:
-  version "1.11.9"
-  resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
   integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
 
 debug@^2.0.0:
@@ -5073,7 +5050,6 @@ htmlparser2@^8.0.1:
     domutils "^3.0.1"
     entities "^4.3.0"
 
-<<<<<<< HEAD
 http-errors@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/http-errors/-/http-errors-2.0.0.tgz"
@@ -5094,12 +5070,11 @@ human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
-=======
+
 humanize-duration@^3.29.0:
   version "3.29.0"
-  resolved "https://registry.npmmirror.com/humanize-duration/-/humanize-duration-3.29.0.tgz#beffaf7938388cd0f38c494f8970d6faebecf3c0"
+  resolved "https://registry.npmjs.org/humanize-duration/-/humanize-duration-3.29.0.tgz"
   integrity sha512-G5wZGwYTLaQAmYqhfK91aw3xt6wNbJW1RnWDh4qP1PvF4T/jnkjx2RVhG5kzB2PGsYGTn+oSDBQp+dMdILLxcg==
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
 
 hyphenate-style-name@^1.0.3:
   version "1.0.4"
@@ -9049,11 +9024,7 @@ web-namespaces@^2.0.0:
 
 webextension-polyfill@^0.10.0:
   version "0.10.0"
-<<<<<<< HEAD
   resolved "https://registry.npmjs.org/webextension-polyfill/-/webextension-polyfill-0.10.0.tgz"
-=======
-  resolved "https://registry.npmmirror.com/webextension-polyfill/-/webextension-polyfill-0.10.0.tgz#ccb28101c910ba8cf955f7e6a263e662d744dbb8"
->>>>>>> 885a178a70feaab43b9d0ad9504f8df9422194df
   integrity sha512-c5s35LgVa5tFaHhrZDnr3FpQpjj1BB+RXhLTYUxGqBVN460HkbM8TBtEqdXWbpTKfzwCcjAZVF7zXCYSKtcp9g==
 
 webidl-conversions@^3.0.0:

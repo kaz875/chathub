@@ -51,12 +51,14 @@
     "@sentry/integrations": "^7.61.1",
     "@sentry/react": "^7.61.1",
     "@tanstack/react-router": "^0.0.1-beta.83",
+    "@types/chrome": "^0.0.244",
     "browser-fs-access": "^0.34.1",
     "cachified": "^3.5.4",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "dayjs": "^1.11.9",
     "eventsource-parser": "^1.0.0",
+    "firebase": "^10.1.0",
     "framer-motion": "^10.16.0",
     "fuse.js": "^6.6.2",
     "github-markdown-css": "^5.2.0",
@@ -106,7 +108,6 @@
     "uuid": "^9.0.0",
     "webextension-polyfill": "^0.10.0",
     "websocket-as-promised": "^2.0.1",
-    "zod": "^3.21.4",
-    "firebase": "^10.1.0"
+    "zod": "^3.21.4"
   }
 }
