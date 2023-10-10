@@ -34,12 +34,18 @@ const app = initializeApp(firebaseConfig)
 // Initialize db
 const db = getFirestore(app)
 
-// Function to get the active context path
 async function getActiveContextPath() {
-  const activeContextPathRef = doc(db, 'activeContextPath', 'active');
-  const activeContextPathDoc = await getDoc(activeContextPathRef);
-  const contextPath = activeContextPathDoc.data()?.contextPath;
-  return contextPath;
+  const activeContextPathRef = doc(db, 'activeContextPath/active');
+  const activeContextPathDoc = await getDoc(activeContextPathRef); 
+  const activeContextPath = activeContextPathDoc.data()?.contextPath;
+  return activeContextPath ? activeContextPath : '_No_Context_'; // Default path if not available
+}
+
+async function getActiveTopic() {
+  const activeTopicRef = doc(db, 'activeTopic/active');
+  const activeTopicDoc = await getDoc(activeTopicRef); 
+  const activeTopic = activeTopicDoc.data()?.topic;
+  return activeTopic ? activeTopic : 'Untitled Topic'; // Default path if not available
 }
 
 // generate random string of specified length
@@ -76,15 +82,17 @@ async function loadConversationMessages(botId: BotId, topic: string, cid: string
 }
 
 // Add a topic parameter to setConversationMessages
-export async function setConversationMessages(botId: BotId, topic: string, cid: string, messages: ChatMessageModel[]) {
+export async function setConversationMessages(botId: BotId, topicOverride: string, cid: string, messages: ChatMessageModel[]) {
   
   const contextPath = await getActiveContextPath();
+  const topicFromDB = await getActiveTopic();
+  const topic = topicOverride ? topicOverride : topicFromDB;
 
   // save to firestore
-  const conversationRef = doc(db, `conversationsV2/${contextPath}/${topic}/${botId}`, cid)
+  const conversationRef = doc(db, `conversations/2.0/${contextPath}/${topic}/${botId}`, cid)
   await setDoc(conversationRef, { id: cid, createdAt: Date.now() }, { merge: true })
   messages.forEach(async message => {
-    const messageRef = doc(collection(db, `conversationsV2/${contextPath}/${topic}/${botId}/${cid}/messages`), message.id)
+    const messageRef = doc(collection(db, `conversations/2.0/${contextPath}/${topic}/${botId}/${cid}/messages`), message.id)
     await setDoc(messageRef, message);
   })
 
