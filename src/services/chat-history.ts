@@ -17,7 +17,7 @@ type ConversationWithMessages = Conversation & { messages: ChatMessageModel[] }
 
 // Initialize Firebase
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, doc, getDocs, deleteDoc, setDoc, writeBatch } from 'firebase/firestore'
+import { getFirestore, collection, doc, getDoc, getDocs, deleteDoc, setDoc, writeBatch } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtTFuSZj2SF4NDaN3YQjlHW6jZivnzJnc",
@@ -33,6 +33,14 @@ const app = initializeApp(firebaseConfig)
 
 // Initialize db
 const db = getFirestore(app)
+
+// Function to get the active context path
+async function getActiveContextPath() {
+  const activeContextPathRef = doc(db, 'activeContextPath', 'active');
+  const activeContextPathDoc = await getDoc(activeContextPathRef);
+  const contextPath = activeContextPathDoc.data()?.contextPath;
+  return contextPath;
+}
 
 // generate random string of specified length
 export function randomString (length: number) {
@@ -70,11 +78,13 @@ async function loadConversationMessages(botId: BotId, topic: string, cid: string
 // Add a topic parameter to setConversationMessages
 export async function setConversationMessages(botId: BotId, topic: string, cid: string, messages: ChatMessageModel[]) {
   
+  const contextPath = await getActiveContextPath();
+
   // save to firestore
-  const conversationRef = doc(db, `conversations/${botId}/${topic}`, cid)
+  const conversationRef = doc(db, `conversationsV2/${contextPath}/${topic}/${botId}`, cid)
   await setDoc(conversationRef, { id: cid, createdAt: Date.now() }, { merge: true })
   messages.forEach(async message => {
-    const messageRef = doc(collection(db, `conversations/${botId}/${topic}/${cid}/messages`), message.id)
+    const messageRef = doc(collection(db, `conversationsV2/${contextPath}/${topic}/${botId}/${cid}/messages`), message.id)
     await setDoc(messageRef, message);
   })
 
