@@ -38,7 +38,6 @@ export type BotId =
   | 'rwkv'
   | 'oasst'
   | 'rwkv'
-  | 'llama'
   | 'pi'
   | 'wizardlm'
   | 'qianwen'
