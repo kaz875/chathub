@@ -57,7 +57,7 @@ const ConversationPanel: FC<Props> = (props) => {
   const [warning, setWarning] = useState('')
 
   // Add a useEffect hook to check the topic and set the warning
-/*   useEffect(() => {
+  useEffect(() => {
     // If the topic is empty, show a warning message
     if (!topic) {
       setWarning('Please specify a topic before sending any messages.')
@@ -65,7 +65,7 @@ const ConversationPanel: FC<Props> = (props) => {
       // Otherwise, clear the warning message
       setWarning('')
     }
-  }, [topic]) // Add topic as a dependency */
+  }, [topic]) // Add topic as a dependency
 
   // Modify the onSubmit function to check the topic
   const onSubmit = useCallback(

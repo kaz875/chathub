@@ -21,6 +21,25 @@ import ThemeSettingModal from '../ThemeSettingModal'
 import Tooltip from '../Tooltip'
 import NavLink from './NavLink'
 import PremiumEntry from './PremiumEntry'
+import { doc, getDoc } from 'firebase/firestore'; 
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCtTFuSZj2SF4NDaN3YQjlHW6jZivnzJnc",
+  authDomain: "pms-data-store116.firebaseapp.com",
+  projectId: "pms-data-store116",
+  storageBucket: "pms-data-store116.appspot.com",
+  messagingSenderId: "197380916833",
+  appId: "1:197380916833:web:ee256804e4fcaf3b888c20",
+  measurementId: "G-Y6GBXWVHQQ"
+};
+
+// Initialize Firebase app
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore database
+const db = getFirestore(app);
 
 function IconButton(props: { icon: string; onClick?: () => void }) {
   return (
@@ -59,6 +78,21 @@ function Sidebar() {
     }
   }, [setCollapsed])
 
+  useEffect(() => {
+    const loadActiveTopic = async () => {
+      try {
+        const activeTopicRef = doc(db, 'activeTopic/active');
+        const activeTopicDoc = await getDoc(activeTopicRef);
+        const activeTopic = activeTopicDoc.data()?.topic;
+        setTopic(activeTopic || 'Untitled Topic');
+      } catch (error) {
+        console.error('Error loading active topic:', error);
+      }
+    };
+
+    loadActiveTopic();
+  }, [setTopic]);
+
   return (
     <motion.aside
       className={cx(
@@ -87,7 +121,8 @@ function Sidebar() {
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 placeholder="Enter topic"
-                className="p-[6px] rounded-[10px] w-fit cursor-pointer hover:opacity-80 bg-secondary bg-opacity-20 flex: 1; width: 100%;"
+                className="p-[6px] rounded-[10px] w-full cursor-pointer hover:opacity-80 bg-secondary bg-opacity-20 flex: 1; width: 100%;"
+                title = {topic}
               />
               </div>
             </Tooltip>
