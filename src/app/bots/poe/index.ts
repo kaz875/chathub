@@ -189,10 +189,12 @@ export class PoeWebBot extends AbstractBot {
     if (this.botId === PoeGPTModel['GPT-3.5-16k']) {
       return 'ChatGPT (poe/gpt-3.5-16k)'
     }
-
     if (this.botId === PoeGPTModel['GPT-4-32k']) {
       return 'ChatGPT (poe/gpt-4-32k)'
     }        
+    if (this.botId === PoeGPTModel['Web-Search']) {
+      return 'ChatGPT (poe/web-search)'
+    }            
     if (this.botId === PoeClaudeModel['claude-instant']) {
       return 'Claude (poe/claude-instant)'
     }
@@ -201,6 +203,9 @@ export class PoeWebBot extends AbstractBot {
     }
     if (this.botId === PoeClaudeModel['claude2-100k']) {
       return 'Claude (poe/claude-2-100k)'
+    } 
+    if (this.botId === PoeClaudeModel['solar-0-70b']) {
+      return 'solar-0-70b (Poe)'
     }
   }
 }

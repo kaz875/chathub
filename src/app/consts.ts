@@ -35,6 +35,10 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'GPT-4',
     avatar: chatgptLogo,
   },
+  poeWebSearch: {
+    name: 'GPT Web Search (Poe)',
+    avatar: chatgptLogo,
+  },  
   poepalm: {
     name: 'PaLM',
     avatar: bardLogo,
@@ -99,6 +103,10 @@ export const CHATBOTS: Record<BotId, { name: string; avatar: any }> = {
     name: 'Llama-2 70b',
     avatar: llamaLogo,
   },
+  'solar-0-70b': {
+    name: 'solar-0-70b',
+    avatar: llamaLogo,
+  },  
   stablelm: {
     name: 'StableLM',
     avatar: piLogo,

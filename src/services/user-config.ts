@@ -17,6 +17,7 @@ export enum ChatGPTMode {
   PoeGPT = 'poeGPT3',
   PoeGPT16k = 'poeGPT3-16k',  
   PoeGPT4 = 'poeGPT4',    
+  PoeWebSearch = 'poeWebSearch',
   PoeGPT32k = 'poeGPT4-32k',      
   Poe = 'poe',
   OpenRouter = 'openrouter',
@@ -32,6 +33,7 @@ export enum PoeGPTModel {
   'GPT-3.5-16k' = 'agouti',
   'GPT-4' = 'beaver',
   'GPT-4-32k' = 'vizcacha',  
+  'GPT-Web-Search' = 'web-search'
 }
 
 export enum PoeClaudeModel {
@@ -39,7 +41,8 @@ export enum PoeClaudeModel {
   'PaLM' = 'acouchy',
   'claude-instant-100k' = 'a2_100k',
   'claude2-100k' = 'a2_2',
-  'llama2-70b' = 'llama_2_70b_chat'
+  'llama2-70b' = 'llama_2_70b_chat',
+  'solar-0-70b' = 'solar-0-70b'
 }
 
 export enum ClaudeMode {

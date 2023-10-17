@@ -38,6 +38,8 @@ export type BotId =
   | 'wizardlm'
   | 'qianwen'
   | 'baichuan'
+  | 'poeWebSearch'
+  | 'solar-0-70b'
 
 export function createBotInstance(botId: BotId) {
   switch (botId) {
@@ -95,6 +97,10 @@ export function createBotInstance(botId: BotId) {
       return new QianwenWebBot()
     case 'baichuan':
       return new BaichuanWebBot()
+    case 'poeWebSearch':
+      return new ChatGPTBot(ChatGPTMode.PoeWebSearch)    
+    case 'solar-0-70b':
+      return new ClaudeBot(PoeClaudeModel['solar-0-70b'])
   }
 }
 

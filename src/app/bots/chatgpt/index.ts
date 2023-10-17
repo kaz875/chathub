@@ -53,6 +53,10 @@ export class ChatGPTBot extends AsyncAbstractBot {
     if (this.chatgptModeSpecified === ChatGPTMode.PoeGPT32k) {
       return new PoeWebBot(PoeGPTModel['GPT-4-32k'])
     }
+    if (this.chatgptModeSpecified === ChatGPTMode.PoeWebSearch) {
+      return new PoeWebBot(PoeGPTModel['GPT-Web-Search'])
+    }
+        
     return new ChatGPTWebBot(config.chatgptWebappModelName)
   }
 
