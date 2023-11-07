@@ -39,7 +39,7 @@ export type BotId =
   | 'qianwen'
   | 'baichuan'
   | 'poeWebSearch'
-  | 'solar-0-70b'
+  | 'code-llama-34b'
 
 export function createBotInstance(botId: BotId) {
   switch (botId) {
@@ -88,7 +88,7 @@ export function createBotInstance(botId: BotId) {
     case 'llama2-13b':
       return new LMSYSBot('llama-2-13b-chat')   
     case 'llama2-70b':
-      return new LMSYSBot('llama-2-70b-chat')
+      return new LMSYSBot('code-llama-34b-chat')
     case 'wizardlm':
       return new LMSYSBot('wizardlm-13b')      
     case 'pi':
@@ -99,8 +99,8 @@ export function createBotInstance(botId: BotId) {
       return new BaichuanWebBot()
     case 'poeWebSearch':
       return new ChatGPTBot(ChatGPTMode.PoeWebSearch)    
-    case 'solar-0-70b':
-      return new ClaudeBot(PoeClaudeModel['solar-0-70b'])
+    case 'code-llama-34b':
+      return new ClaudeBot(PoeClaudeModel['code-llama-34b'])
   }
 }
 

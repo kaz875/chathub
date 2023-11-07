@@ -204,8 +204,8 @@ export class PoeWebBot extends AbstractBot {
     if (this.botId === PoeClaudeModel['claude2-100k']) {
       return 'Claude (poe/claude-2-100k)'
     } 
-    if (this.botId === PoeClaudeModel['solar-0-70b']) {
-      return 'solar-0-70b (Poe)'
+    if (this.botId === PoeClaudeModel['code-llama-34b']) {
+      return 'code-llama-34b (Poe)'
     }
   }
 }

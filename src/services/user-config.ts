@@ -42,7 +42,7 @@ export enum PoeClaudeModel {
   'claude-instant-100k' = 'a2_100k',
   'claude2-100k' = 'a2_2',
   'llama2-70b' = 'llama_2_70b_chat',
-  'solar-0-70b' = 'solar-0-70b'
+  'code-llama-34b' = 'code-llama-34b'
 }
 
 export enum ClaudeMode {
